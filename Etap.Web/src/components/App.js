@@ -14,7 +14,7 @@ export default class App extends Component {
         <BrowserRouter>
           <React.Fragment>
             <Route path='/' component={Navbar} />
-            <Route path='/' component={Dashboard} />
+            <Route exact path='/' component={Dashboard} />
             <Route path='/template' component={Template} />
 
           </React.Fragment>
