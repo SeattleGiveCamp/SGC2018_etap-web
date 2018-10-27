@@ -21,6 +21,7 @@ namespace Etap.Web.Controllers
 
             private static async void SaveForm(dynamic form)
             {
+                /* 
                 const string connectionString = "mongodb://localhost:27017";
 
                 // Create a MongoClient object by using the connection string
@@ -32,6 +33,7 @@ namespace Etap.Web.Controllers
                 //get mongodb collection
                 var collection = database.GetCollection<dynamic>("form-data");
                 await collection.InsertOneAsync(form);
+                */
             }
         }
     }
