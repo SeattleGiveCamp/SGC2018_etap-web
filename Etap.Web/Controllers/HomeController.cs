@@ -1,43 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Etap.Web.Models;
 
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
 namespace Etap.Web.Controllers
 {
-    public class HomeController : Controller
+    namespace Etap.Web.Controllers
     {
-        public IActionResult Index()
+        public class HomeController : Controller
         {
-            return View();
-        }
+            [Route("/")]
+            public IActionResult Index()
+            {
+                return PhysicalFile(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/dist/index.html"),
+                    "text/html"
+                );
+            }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+            [Route("/formSubmit")]
+            public IActionResult SubmitForm(dynamic form) => SaveForm(form);
 
-            return View();
-        }
+            private static async void SaveForm(dynamic form)
+            {
+                /* 
+                const string connectionString = "mongodb://localhost:27017";
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+                // Create a MongoClient object by using the connection string
+                var client = new MongoClient(connectionString);
 
-            return View();
-        }
+                //Use the MongoClient to access the server
+                var database = client.GetDatabase("ETAP-Site-Cleanup-Data");
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                //get mongodb collection
+                var collection = database.GetCollection<dynamic>("form-data");
+                await collection.InsertOneAsync(form);
+                */
+            }
         }
     }
 }

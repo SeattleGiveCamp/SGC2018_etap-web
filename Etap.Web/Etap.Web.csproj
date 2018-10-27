@@ -9,4 +9,7 @@
     <PackageReference Include="Swashbuckle.AspnetCore" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="src\statics\" />
+  </ItemGroup>
 </Project>
