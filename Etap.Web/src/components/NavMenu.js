@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import FormControlLabel formm '@material-ui/core/FormControlLabel'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import { HomeOutline, CheckboxBlankOutline} from 'mdi-material-ui';
+
+import {checked} from '../ducks/checklist.js';
 
 const styles = theme => {
 
@@ -20,7 +25,7 @@ const styles = theme => {
   return {
 
     list: {
-      width: 250,
+      width: '90vw',
       marginTop: 10,
     },
     li: {
@@ -56,6 +61,11 @@ const styles = theme => {
     hamburger: {
       marginRight: 20,
     },
+    checkbox: {
+      display: 'flex',
+      width: '100%',
+      margin: 'auto',
+    }
   };
 };
 
@@ -64,7 +74,6 @@ class NavMenu extends React.Component {
     left: false,
     openPreferencesDialog: false,
     openFavoritesDialog: false,
-
   };
 
   toggleDrawer = (side, open) => () => {
@@ -88,7 +97,7 @@ class NavMenu extends React.Component {
 
 
   render() {
-    const { classes } = this.props;
+    const { classes, checklist, checked } = this.props;
 
     const sideList = (
       <div className={classes.list}>
@@ -105,36 +114,42 @@ class NavMenu extends React.Component {
         <Divider />
 
         <FormControlLabel
+          className={classes.checkbox}
           control={
             <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
+              checked={checklist.foo}
+              onChange={() => checked('foo', checklist.foo)}
               value="checkedA"
             />
           }
-          label="Secondary"
+          label="Foo"
         />
         <Divider />
 
-        <Link to='/bar' className={classes.link}>
-          <List className={classes.li}>
-            <Button className={classes.button}>
-              <CheckboxBlankOutline />
-              <Typography className={classes.listText} variant='body1'>Bar</Typography>
-            </ Button>
-          </List>
-        </Link>
+       <FormControlLabel
+          className={classes.checkbox}
+          control={
+            <Checkbox
+              checked={checklist.bar}
+              onChange={() => checked('bar', checklist.bar)}
+              value="checkedA"
+            />
+          }
+          label="Bar"
+        />
         <Divider />
 
-
-        <Link to='/baz' className={classes.link}>
-          <List className={classes.li}>
-            <Button className={classes.button}>
-              <CheckboxBlankOutline />
-              <Typography className={classes.listText} variant='body1'>Baz</Typography>
-            </ Button>
-          </List>
-        </Link>
+        <FormControlLabel
+          className={classes.checkbox}
+          control={
+            <Checkbox
+              checked={checklist.baz}
+              onChange={() => checked('baz', checklist.baz)}
+              value="checkedA"
+            />
+          }
+          label="Baz"
+        />
         <Divider />
       </div >
     );
@@ -152,7 +167,6 @@ class NavMenu extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
             onKeyDown={this.toggleDrawer('left', false)}
           >
             {sideList}
@@ -163,4 +177,8 @@ class NavMenu extends React.Component {
   }
 }
 
-export default withStyles(styles)(NavMenu);
+const mapStateToProps = state => ({checklist: state.checklist})
+
+const mapDispatchToProps = {checked}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NavMenu));

@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import defaultReducer from '../ducks/default-duck.js';
+import checklist from '../ducks/checklist.js';
 
 import logger from '../middleware/logger.js';
 
 const appReducer = combineReducers({
-  defaultReducer,
+  checklist,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
