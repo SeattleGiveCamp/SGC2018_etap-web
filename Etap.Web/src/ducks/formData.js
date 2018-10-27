@@ -117,7 +117,11 @@ function initialState() {
     siteConditions: {
       trash: ""
     },
-    weightAssessment: {},
+    weightAssessment: {
+      totalWeight: 0,
+      garbageWeight: 0,
+      recycleWeight: 0,
+    },
     categories: initialCategories
   };
 }
