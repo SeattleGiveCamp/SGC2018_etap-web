@@ -7,7 +7,7 @@ import logger from '../middleware/logger.js';
 
 const appReducer = combineReducers({
   checklist,
-  formData
+  formData,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
