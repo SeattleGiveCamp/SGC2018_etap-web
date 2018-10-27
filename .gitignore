@@ -1,7 +1,7 @@
 
 # Add project-specific here:
 secrets/
-
+.vscode/
 # Created by https://www.gitignore.io/api/csharp
 
 ### Csharp ###
