@@ -19,6 +19,7 @@ namespace Etap.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseWebRoot("~/../wwwroot/dist/")
                 .UseStartup<Startup>();
     }
 }

@@ -8,12 +8,14 @@ RUN dotnet restore
 # TODO: add test run steps
 
 # Install NPM and run Webpack build steps
-RUN apk add --update nodejs
+RUN wget -qO- https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install
 RUN npm run build
 
 # Copy everything else and build
-COPY Etap.Web/ ./
-RUN dotnet publish -c Release -o out
+WORKDIR /app/Etap.Web
+RUN dotnet publish -c Release -o ../out
 
 # Build runtime image
 FROM microsoft/dotnet:aspnetcore-runtime
