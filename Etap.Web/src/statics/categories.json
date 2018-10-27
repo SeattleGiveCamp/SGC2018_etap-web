@@ -2,188 +2,188 @@
 {
     "categories": 
     [{
-        "category": "1",
+        "number": "1",
         "name": "Bags",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "2",
+        "number": "2",
         "name": "Cups",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "3",
+        "number": "3",
         "name": "Beverage and Food Cartons",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "4",
+        "number": "4",
         "name": "Other Disposable Food Serviceware Items (plates, to go)",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "5",
+        "number": "5",
         "name": "Food and Other Product Packaging",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "6",
+        "number": "6",
         "name": "Cardboard (corrugated)",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "7",
+        "number": "7",
         "name": "Paper and paper pieces (any size)",
-        "subGrouping": "Paper" 
+        "group": "Paper" 
     },{
-        "category": "8",
+        "number": "8",
         "name": "Beverage Bottles and Containers",
-        "subGrouping": "Glass" 
+        "group": "Glass" 
     },{
-        "category": "9",
+        "number": "9",
         "name": "Food and Other Product Packaging",
-        "subGrouping": "Glass" 
+        "group": "Glass" 
     },{
-        "category": "10",
+        "number": "10",
         "name": "Glass Fragments (≥ 2.5 cm) - Packaging/Containers/Unidentifiable",
-        "subGrouping": "Glass" 
+        "group": "Glass" 
     },{
-        "category": "11",
+        "number": "11",
         "name": "Glass Fragments (< 2.5 cm)",
-        "subGrouping": "Glass" 
+        "group": "Glass" 
     },{
-        "category": "12",
+        "number": "12",
         "name": "Beverage Cans and Containers",
-        "subGrouping": "Metal" 
+        "group": "Metal" 
     },{
-        "category": "13",
+        "number": "13",
         "name": "Bottle Caps and Beverage Packaging",
-        "subGrouping": "Metal" 
+        "group": "Metal" 
     },{
-        "category": "14",
+        "number": "14",
         "name": "Food and Other Product Packaging",
-        "subGrouping": "Metal" 
+        "group": "Metal" 
     },{
-        "category": "15",
+        "number": "15",
         "name": "Metal Pieces (≥ 2.5 cm) - Packaging/Containers/Unidentifiable",
-        "subGrouping": "Metal" 
+        "group": "Metal" 
     },{
-        "category": "16",
+        "number": "16",
         "name": "Metal Pieces (< 2.5 cm)",
-        "subGrouping": "Metal" 
+        "group": "Metal" 
     },{
-        "category": "17",
+        "number": "17",
         "name": "Bags",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "18",
+        "number": "18",
         "name": "Beverage Bottles and Containers",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "19",
+        "number": "19",
         "name": "Straws and Stirrers",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "20",
+        "number": "20",
         "name": "Bottle Caps",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "21",
+        "number": "21",
         "name": "Other Beverage Packaging (Lids, seals...)",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "22",
+        "number": "22",
         "name": "Disposable Food Serviceware Items (Cups, utensils, plates...)",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "23",
+        "number": "23",
         "name": "Food Wrappers/Pouches",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "24",
+        "number": "24",
         "name": "Other Food and Other Product Packaging",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "25",
+        "number": "25",
         "name": "Fragments/Pieces (≥ 2.5 cm)",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "26",
+        "number": "26",
         "name": "Fragments/Pieces (< 2.5 cm)",
-        "subGrouping": "Plastic" 
+        "group": "Plastic" 
     },{
-        "category": "27",
+        "number": "27",
         "name": "Cigarettes/Cannabis Butts, Ends, Filters",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "28",
+        "number": "28",
         "name": "Smoking/Drug Paraphernalia",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "29",
+        "number": "29",
         "name": "Sharps - Medical/Drug/Personal",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "30",
+        "number": "30",
         "name": "Sharps - Fishing/Recreation/Other",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "31",
+        "number": "31",
         "name": "Medical Waste/Supplies (non-sharps)",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "32",
+        "number": "32",
         "name": "Toiletries/Personal Products",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "33",
+        "number": "33",
         "name": "Textiles and Shoes",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "34",
+        "number": "34",
         "name": "Electronics",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "35",
+        "number": "35",
         "name": "Entertainment/Recreation Items",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "36",
+        "number": "36",
         "name": "Household/Camping Items",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "37",
+        "number": "37",
         "name": "Commercial/Industrial/Office/Agricultural Items",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "38",
+        "number": "38",
         "name": "COnstruction and Demolition Debris - Wood",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "39",
+        "number": "39",
         "name": "Paint, Chemical Containers, and Other Hazardoous",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "40",
+        "number": "40",
         "name": "Fishing/Maritime Gear",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "41",
+        "number": "41",
         "name": "Vehicle/Vessel Parts",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "42",
+        "number": "42",
         "name": "Furniture/Carpet and Other Bulky Items",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "43",
+        "number": "43",
         "name": "Foamed Pieces/Fragments of Docks, Floats",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "44",
+        "number": "44",
         "name": "Illegal Dumping - Whole Bags of Trash",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "45",
+        "number": "45",
         "name": "Organic Matter/Items",
-        "subGrouping": "Special/ Categories/Misc" 
+        "group": "Special/ Categories/Misc" 
     },{
-        "category": "46",
+        "number": "46",
         "name": "Write In",
-        "subGrouping": "Special/Categories/Misc" 
+        "group": "Special/Categories/Misc" 
     }]
 }

@@ -4,15 +4,31 @@ const FORMUPDATE = "FORMUPDATE";
 export const actionCreator = (value, key1, key2 = null, key3 = null) => {
   return {
     type: FORMUPDATE,
-    payload: {
+    payload: buildVariantDynamicObject(value, key1, key2, key3)
+  };
+};
+
+function buildVariantDynamicObject(value, key1, key2, key3) {
+  if (key3){
+    return {
+      [key1]: {
+        [key2]: {
+          [key3]: value
+        }
+      }
+    };
+  }
+  if (key2){
+    return {
       [key1]: {
         [key2]: value
       }
-    }
-  };
-};
-// onchange={(value) => actionCreator(value, "summary", "leader")}
-// onchange={(value) => actionCreator(value, "siteInfo", "siteName")}
+    };
+  }
+  return {
+    [key1]: value
+  }
+}
 
 //reducer
 
@@ -35,7 +51,24 @@ const initialState = {
   siteConditions: {
     trash: ""
   },
-  weightAssessment: {}
+  weightAssessment: {},
+  categories: [{
+    category: {
+      group: "",
+      number: 0,
+      name: "",
+      totalCount: 0,
+      threatAssessmentCounts: {
+        shinyCount: 0,
+        closedLoopCount: 0,
+        openContainerCount: 0,
+        fouledCount: 0
+      },
+      notes: "",
+      weight: 0,
+      weightUnit: ""
+    }
+  }]
 };
 
 
