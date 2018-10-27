@@ -4,15 +4,31 @@ const FORMUPDATE = "FORMUPDATE";
 export const actionCreator = (value, key1, key2 = null, key3 = null) => {
   return {
     type: FORMUPDATE,
-    payload: {
+    payload: buildVariantDynamicObject(value, key1, key2, key3)
+  };
+};
+
+function buildVariantDynamicObject(value, key1, key2, key3) {
+  if (key3){
+    return {
+      [key1]: {
+        [key2]: {
+          [key3]: value
+        }
+      }
+    };
+  }
+  if (key2){
+    return {
       [key1]: {
         [key2]: value
       }
-    }
-  };
-};
-// onchange={(value) => actionCreator(value, "summary", "leader")}
-// onchange={(value) => actionCreator(value, "siteInfo", "siteName")}
+    };
+  }
+  return {
+    [key1]: value
+  }
+}
 
 //reducer
 

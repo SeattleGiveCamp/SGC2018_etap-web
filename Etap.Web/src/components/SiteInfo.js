@@ -13,7 +13,7 @@ class SiteInfo extends Component {
     return (
       <Fragment>
         <Typography variant='h3'>Site Info</Typography>
-        <TextField label='Leader' value={formData.leader} onChange={(e) => actionCreator(e.target.value, "summary", "leader")}/>
+        <TextField label='Leader' value={formData.leader} onChange={(e) => this.props.actionCreator(e.target.value, "summary", "leader")}/>
       </Fragment>
     );
   };
