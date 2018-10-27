@@ -8,7 +8,7 @@
 
 #### Problem: Limited given time, building an app from scratch
 
-#### Goal: Our goal is to provide a secure and easy to use online game platform that is suitable for our target users.
+#### Goal: Our goal is to provide an easy way to volunteer coordinators to report their work
 
 ### User Stories:
   1. As a coordinator, I want to enter in information about the site so that I can categorize the location with metadata
