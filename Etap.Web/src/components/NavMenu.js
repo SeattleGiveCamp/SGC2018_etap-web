@@ -109,7 +109,7 @@ class NavMenu extends React.Component {
       <div className={classes.list}>
         <Typography className={classes.menu} variant='h6'>Menu</Typography>
 
-        <Link to='/' className={classes.link}>
+        <Link to='/FieldSummaryReport' className={classes.link}>
           <List className={classes.li}>
             <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
               <FileDocumentBoxMultipleOutline />

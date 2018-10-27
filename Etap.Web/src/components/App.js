@@ -19,7 +19,7 @@ export default class App extends Component {
             <Route path='/' component={Navbar} />
             <Route exact path='/' component={Dashboard} />
             <Route path='/template' component={Template} />
-            <Route path='/FieldSummaryReport/FormContainer' component={FormContainer} />
+            <Route path='/FieldSummaryReport' component={FormContainer} />
             <Route path='/lookup' component={Lookup} />
             <Route path='/siteInfo' component={SiteInfo} />
           </React.Fragment>
