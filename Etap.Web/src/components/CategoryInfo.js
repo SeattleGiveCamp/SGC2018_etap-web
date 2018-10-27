@@ -12,8 +12,8 @@ class CategoryInfo extends Component {
     console.log(state);
     return (
       <Fragment>
-        <Typography variant='h3'>Site Info</Typography>
-        <TextField label='Leader' value={formData.leader} onChange={(e) => actionCreator(e.target.value, "summary", "leader")}/>
+        <Typography variant='h3'>whatever</Typography>
+        <TextField label='Leader' value={formData.leader} onChange={(e) => actionCreator(e.target.value, "categories", "category", "group")}/>
       </Fragment>
     );
   };
