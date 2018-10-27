@@ -10,6 +10,6 @@ namespace CloudClientLibrary
 {
     public interface ITableClient
     {
-        Task AddEvent(EventEntity evt);
+        Task AddFormData(FormDataEntity formData);
     }
 }
