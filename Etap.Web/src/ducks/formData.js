@@ -35,7 +35,24 @@ const initialState = {
   siteConditions: {
     trash: ""
   },
-  weightAssessment: {}
+  weightAssessment: {},
+  categories: [{
+    category: {
+      group: "",
+      number: 0,
+      name: "",
+      totalCount: 0,
+      threatAssessmentCounts: {
+        shinyCount: 0,
+        closedLoopCount: 0,
+        openContainerCount: 0,
+        fouledCount: 0
+      },
+      notes: "",
+      weight: 0,
+      weightUnit: ""
+    }
+  }]
 };
 
 
