@@ -13,11 +13,11 @@
         },
         {
           "name": "weather",
-          "value": "75 degrees and sunny"
+          "value": "It's been hot, without much rain; the stormwater pond was dried out"
         },
         {
           "name": "date",
-          "value": "5/12/18"
+          "value": "8/10/18 at 10am-1pm"
         },
         {
           "name": "hoursSpent",
@@ -72,8 +72,8 @@
       "name": "Weight Assessment",
       "fields": [
         {
-          "name": "",
-          "value": ""
+          "name": "total (lbs)",
+          "value": "12"
         },
         {
           "name": "",
