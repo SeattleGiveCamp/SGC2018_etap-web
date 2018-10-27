@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { HomeOutline, CheckboxBlankOutline} from 'mdi-material-ui';
+import { FileDocumentBoxMultipleOutline, CheckboxBlankOutline} from 'mdi-material-ui';
 
 import {checked} from '../ducks/checklist.js';
 
@@ -62,10 +62,16 @@ const styles = theme => {
       marginRight: 20,
     },
     checkbox: {
+      marginLeft: 28,
+    },
+    checkboxContainer: {
+      display: 'inline-flex',
+      flexDirection: 'row',
+    },
+    checkboxLink: {
       display: 'flex',
-      width: '100%',
-      margin: 'auto',
-    }
+      alignItems: 'center',
+    },
   };
 };
 
@@ -105,51 +111,63 @@ class NavMenu extends React.Component {
 
         <Link to='/' className={classes.link}>
           <List className={classes.li}>
-            <Button className={classes.button}>
-              <HomeOutline />
-              <Typography className={classes.listText} variant='body1'>Home</Typography>
+            <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
+              <FileDocumentBoxMultipleOutline />
+              <Typography className={classes.listText} variant='body1'>Form</Typography>
             </ Button>
           </List>
         </Link>
         <Divider />
 
-        <FormControlLabel
-          className={classes.checkbox}
-          control={
-            <Checkbox
-              checked={checklist.foo}
-              onChange={() => checked('foo', checklist.foo)}
-              value="checkedA"
-            />
-          }
-          label="Foo"
-        />
+        <div className={classes.checkboxContainer}>
+          <FormControlLabel
+            className={classes.checkbox}
+            control={
+              <Checkbox
+                checked={checklist.foo}
+                onChange={() => checked('foo', checklist.foo)}
+                value="foo"
+              />
+            }
+          />
+          <Link to='foo' className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
+          <Typography variant='body2'>Foo</Typography>
+          </Link>
+        </div>
         <Divider />
 
-       <FormControlLabel
-          className={classes.checkbox}
-          control={
-            <Checkbox
-              checked={checklist.bar}
-              onChange={() => checked('bar', checklist.bar)}
-              value="checkedA"
-            />
-          }
-          label="Bar"
-        />
+      <div className={classes.checkboxContainer}>
+          <FormControlLabel
+            className={classes.checkbox}
+            control={
+              <Checkbox
+                checked={checklist.bar}
+                onChange={() => checked('bar', checklist.bar)}
+                value="bar"
+              />
+            }
+          />
+          <Link to='bar' className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
+          <Typography variant='body2'>Bar</Typography>
+          </Link>
+        </div>
         <Divider />
 
-        <FormControlLabel
-          className={classes.checkbox}
-          control={
-            <Checkbox
-              checked={checklist.baz}
-              onChange={() => checked('baz', checklist.baz)}
-              value="checkedA"
-            />
-          }
-          label="Baz"
-        />
+      <div className={classes.checkboxContainer}>
+          <FormControlLabel
+            className={classes.checkbox}
+            control={
+              <Checkbox
+                checked={checklist.baz}
+                onChange={() => checked('baz', checklist.baz)}
+                value="baz"
+              />
+            }
+          />
+          <Link to='baz' className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
+          <Typography variant='body2'>Baz</Typography>
+          </Link>
+        </div>
         <Divider />
       </div >
     );
