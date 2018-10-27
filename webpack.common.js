@@ -20,7 +20,7 @@ webpackConfig.output = {
 webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     title:'React App',
-    template: `${__dirname}/Etap.Web/Views/Home/Index.cshtml`,
+    template: `${__dirname}/Etap.Web/wwwroot/dist/template.html`,
   }),
   new DefinePlugin({
     'process.env': {
