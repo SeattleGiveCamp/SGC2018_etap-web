@@ -4,7 +4,7 @@
   "description": "The front-end for the ETAP app",
   "main": "index.js",
   "scripts": {
-    "start":"node ./Etap.Web/src/server.js",
+    "start": "node ./Etap.Web/src/server.js",
     "test": "jest",
     "watch": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
