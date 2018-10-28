@@ -1,4 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import {connect} from 'react-redux';
+
+import axios from 'axios';
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +14,7 @@ import SiteInformation from './SiteInformation';
 import WeightAssessment from './WeightAssessment';
 import LandUse from './LandUse.js';
 import OrgInformation from './OrgInformation';
+import Button from '@material-ui/core/Button';
 
 
 function TabContainer(props) {
@@ -29,7 +34,12 @@ const styles = theme => ({
     flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
+    display: 'auto',
   },
+  submitButton: {
+    margin: 'auto',
+    width: '200px',
+  }
 });
 
 class ScrollableTabsButtonAuto extends React.Component {
@@ -41,11 +51,20 @@ class ScrollableTabsButtonAuto extends React.Component {
     this.setState({ value });
   };
 
+  submit = () => {
+    let form = {...this.props.state.formData, categories: {}, siteName: this.props.state.formData.siteInfo.siteName};
+    axios.post('https://sgc2018-etap-service.herokuapp.com/api/v1/litter', form)
+    .then(response => console.log(response.data))
+    .catch(err => console.log(err));
+
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
 
     return (
+      <Fragment>
       <div className={classes.root}>
         <AppBar position="static" color="default">
           <Tabs
@@ -73,6 +92,10 @@ class ScrollableTabsButtonAuto extends React.Component {
         {value === 5 && <TabContainer>Item Six</TabContainer>}
         {value === 6 && <TabContainer>Item Seven</TabContainer>}
       </div>
+      <div style={{width:'100%', display: 'flex', justifyContent: 'center' }}>
+      <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+      </div>
+      </Fragment>
     );
   }
 }
@@ -81,4 +104,7 @@ ScrollableTabsButtonAuto.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ScrollableTabsButtonAuto);
+const mapStateToProps = state => ({ state });
+
+
+export default connect(mapStateToProps)(withStyles(styles)(ScrollableTabsButtonAuto));
