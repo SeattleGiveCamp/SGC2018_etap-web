@@ -1,11 +1,20 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField } from '@material-ui/core/'
+import { withStyles, TextField, FormControl, FormLabel, FormHelperText } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
 // style the default height and width of the text area
 
-const styles = {
+const styles = theme => ({
+    root: {
+      display: 'flex'
+    },
+    formHeading: {
+      margin: theme.spacing.unit * 3
+    },
+    group: {
+      margin: `${theme.spacing.unit}px 0`
+    },
     container: {
         display: 'flex',
         flexDirection: 'column',
@@ -16,7 +25,7 @@ const styles = {
         marginBottom: 10,
         margin: 'auto',
     }
-}
+});
 
 
 class GeneralObservations extends Component {
@@ -30,8 +39,11 @@ class GeneralObservations extends Component {
         const { formData } = state;
         return (
             <div className={classes.container}>
-                <h2 style={{ textAlign: 'center' }}>General Observations</h2>
-                <p><i>General observations (including but not limited to recent big event in the area, nearby buildings, excessive trash near buildings, transit hub or bus stop, other features that could contribute to trash condition)</i></p>
+                <FormControl component="fieldset" className={classes.formHeading}>
+                    <FormLabel component="legend">General Observations</FormLabel>
+                    <FormHelperText>General observations (including but not limited to recent big event in the area, nearby buildings, excessive trash near buildings, transit hub or bus stop, other features that could contribute to trash condition)</FormHelperText>
+                </FormControl>
+
                 <TextField
                     label="Notes"
                     className={classes.textArea}
