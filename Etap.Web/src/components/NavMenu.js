@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { FileDocumentBoxMultipleOutline, CheckboxBlankOutline} from 'mdi-material-ui';
+import { FileDocumentBoxMultipleOutline, CheckboxBlankOutline, Magnify} from 'mdi-material-ui';
 
 import {checked} from '../ducks/checklist.js';
 
@@ -108,15 +108,23 @@ class NavMenu extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <Typography className={classes.menu} variant='h6'>Menu</Typography>
-
-        <Link to='/FieldSummaryReport' className={classes.link}>
-          <List className={classes.li}>
-            <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
-              <FileDocumentBoxMultipleOutline />
-              <Typography className={classes.listText} variant='body1'>Form</Typography>
-            </ Button>
-          </List>
-        </Link>
+        <Typography>
+          <Link to='/FieldSummaryReport' className={classes.link}>
+            <List className={classes.li}>
+              <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
+                <FileDocumentBoxMultipleOutline />
+                <Typography className={classes.listText} variant='body1'>Site Summary Form</Typography>
+              </ Button>
+            </List>
+          </Link><Link to='/Lookup' className={classes.link}>
+            <List className={classes.li}>
+              <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
+                <Magnify/>
+                <Typography className={classes.listText} variant='body1'>Category Help</Typography>
+              </ Button>
+            </List>
+          </Link>
+        </Typography>
         <Divider />
 
         <div className={classes.checkboxContainer}>

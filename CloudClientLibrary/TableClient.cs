@@ -14,15 +14,23 @@ namespace CloudClientLibrary
 {
     public class TableClient : ITableClient
     {
+<<<<<<< HEAD
         public async Task AddTrashData(TrashData trashData)
         {
             TableBatchOperation batch = new TableBatchOperation();
             batch.InsertOrMerge(trashData);
+=======
+        public async Task AddFormData(FormDataEntity formData)
+        {
+            TableBatchOperation batch = new TableBatchOperation();
+            batch.InsertOrMerge(formData);
+>>>>>>> c6231927e428249400e31704535002b075afda6d
 
             try
             {
                 CloudStorageAccount account = CloudStorageAccount.Parse(CloudClient.ConnectionString);
                 CloudTableClient serviceClient = account.CreateCloudTableClient();
+<<<<<<< HEAD
                 var table = serviceClient.GetTableReference(TrashDataTableName);
                 await table.ExecuteBatchAsync(batch);
                 return;
@@ -45,6 +53,9 @@ namespace CloudClientLibrary
                 CloudStorageAccount account = CloudStorageAccount.Parse(CloudClient.ConnectionString);
                 CloudTableClient serviceClient = account.CreateCloudTableClient();
                 var table = serviceClient.GetTableReference(EventTableName);
+=======
+                var table = serviceClient.GetTableReference(FormTableName);
+>>>>>>> c6231927e428249400e31704535002b075afda6d
                 await table.ExecuteBatchAsync(batch);
                 return;
             }
@@ -87,8 +98,12 @@ namespace CloudClientLibrary
         }
 
         #region constants
+<<<<<<< HEAD
         private readonly string EventTableName = "Events";
         private readonly string TrashDataTableName = "TrashData";
+=======
+        private readonly string FormTableName = "FormData";
+>>>>>>> c6231927e428249400e31704535002b075afda6d
         #endregion
     }
 }
