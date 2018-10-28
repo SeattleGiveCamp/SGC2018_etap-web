@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField, Button, FormLabel } from '@material-ui/core/'
+import { withStyles, Typography, TextField, Button, FormLabel, FormControl } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 import getLocation from '../../lib/location';
 
@@ -155,6 +155,8 @@ class SiteInformation extends Component {
             margin="normal"
             variant='outlined'
           />
+
+          {/* <div id="mapid" style="width: 600px; height: 400px;"></div> */}
 
           {this.createLatLongs()}
 
