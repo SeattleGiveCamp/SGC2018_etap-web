@@ -1,8 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
-
 import axios from 'axios';
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,11 +8,13 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SiteInformation from './SiteInformation';
-
+import SiteCondition from './SiteCondition';
 import WeightAssessment from './WeightAssessment';
 import LandUse from './LandUse.js';
 import OrgInformation from './OrgInformation';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 
 function TabContainer(props) {
@@ -78,7 +78,7 @@ class ScrollableTabsButtonAuto extends React.Component {
           >
             <Tab label="Org Info" />
             <Tab label="Site Info" />
-            <Tab label="Item Three" />
+            <Tab label="Site Condition" />
             <Tab label="Weight Assessment" />
             <Tab label="Land Use" />
             <Tab label="Item Six" />
@@ -87,11 +87,12 @@ class ScrollableTabsButtonAuto extends React.Component {
         </AppBar>
         {value === 0 && <TabContainer><OrgInformation/></TabContainer>}
         {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
+        {value === 2 && <TabContainer><SiteCondition/></TabContainer>}
         {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
         {value === 4 && <TabContainer><LandUse /></TabContainer>}
         {value === 5 && <TabContainer>Item Six</TabContainer>}
         {value === 6 && <TabContainer>Item Seven</TabContainer>}
+
       </div>
       <div style={{width:'100%', display: 'flex', justifyContent: 'center' }}>
       <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
