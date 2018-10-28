@@ -34,8 +34,8 @@ class RadioButtonsGroup extends React.Component {
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Site Condition (Select One)</FormLabel>
           <RadioGroup
-            aria-label="Gender"
-            name="gender1"
+            aria-label="Site Conditions"
+            name="site-conditions"
             className={classes.group}
             value={formData.siteConditions.trash}
             onChange={(e) => this.props.setValue(e.target.value, "siteConditions", "trash")}

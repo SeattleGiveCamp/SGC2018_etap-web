@@ -92,6 +92,11 @@ function initialState() {
   }
 
   return {
+    userInfo: {
+      userName: "",
+      password: "",
+      token: ""
+    },
     summary: {
       leader: "",
       organization: "",

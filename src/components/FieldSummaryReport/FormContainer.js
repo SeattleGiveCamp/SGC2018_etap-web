@@ -52,9 +52,14 @@ class ScrollableTabsButtonAuto extends React.Component {
   };
 
   submit = () => {
-
+    let config = {
+      headers: {
+        "Authorization": "Token " + this.props.state.formData.userInfo.token,
+      }
+    }
+    
     let form = { ...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName };
-    axios.post('https://sgc2018-etap-service.herokuapp.com/api/v1/litter', form)
+    axios.post('https://sgc2018-etap-service.herokuapp.com/api/v1/litter', form, config)
       .then(response => console.log(response.data))
       .catch(err => console.log(err));
 
