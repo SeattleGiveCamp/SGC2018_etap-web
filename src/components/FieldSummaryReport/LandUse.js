@@ -1,9 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, FormControl, InputLabel, Select, OutlinedInput, FormControlLabel, Checkbox, Divider } from '@material-ui/core/'
+import { withStyles, FormControl, FormLabel, FormControlLabel, Checkbox, Divider, FormHelperText } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  formHeading: {
+    margin: theme.spacing.unit * 3
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -15,7 +24,7 @@ const styles = {
       marginBottom: 15,
       margin: 'auto',
   }
-}
+});
 
 class LandUse extends Component {
   render() {
@@ -24,8 +33,10 @@ class LandUse extends Component {
     const {landUse} = formData;
     return (
       <div className={classes.container}>
-        <p style={{textAlign: 'center', margin: 'auto'}}>check all that apply</p>
-
+        <FormControl component="fieldset" className={classes.formHeading}>
+          <FormLabel component="legend">Land Use(s)</FormLabel>
+          <FormHelperText>Within the boundaries of your site (circle all that apply)</FormHelperText>
+        </FormControl>
       <FormControlLabel
       className={classes.formControl}
           control={
