@@ -119,8 +119,8 @@ function initialState() {
     },
     habitatInformation: {
       waterways: 0,
-      stormDraims: 0,
-      criticalHibitat: 0,
+      stormDrains: 0,
+      criticalHabitat: 0,
     },
     preventativeMeasures: {
       captureDevices: 0,

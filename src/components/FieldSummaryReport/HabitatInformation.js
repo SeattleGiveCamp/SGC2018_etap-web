@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField } from '@material-ui/core/'
+import { withStyles, TextField } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
 const styles = {
@@ -21,51 +21,37 @@ class HabitatInformation extends Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
+
     return (
       <div className={classes.container}>
           <TextField
-            label="Site Name"
+            label="Waterways"
             className={classes.textField}
-            value={formData.siteInfo.siteName}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteName")}
+            value={formData.habitatInformation.waterways}
+            onChange={(e) => this.props.setValue(e.target.value, "habitatInformation", "waterways")}
             margin="normal"
             variant='outlined'
+            type="number"
           />
 
           <TextField
-            label="Site Location"
+            label="Storm Drains"
             className={classes.textField}
-            value={formData.siteInfo.siteLocation}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteLocation")}
+            value={formData.habitatInformation.stormDrains}
+            onChange={(e) => this.props.setValue(e.target.value, "habitatInformation", "stormDrains")}
             margin="normal"
             variant='outlined'
+            type="number"
           />
 
           <TextField
-            label="Overall Site Boundaries"
+            label="Critical Habitat"
             className={classes.textField}
-            value={formData.siteInfo.overallSiteBoundary}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
+            value={formData.habitatInformation.criticalHabitat}
+            onChange={(e) => this.props.setValue(e.target.value, "habitatInformation", "criticalHabitat")}
             margin="normal"
             variant='outlined'
-          />
-
-          <TextField
-            label="Notes"
-            className={classes.textField}
-            value={formData.siteInfo.boundaryNotes}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "boundaryNotes")}
-            margin="normal"
-            variant='outlined'
-          />
-
-          <TextField
-            label="Total Sq. Ft."
-            className={classes.textField}
-            value={formData.siteInfo.totalSiteArea}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "totalSiteArea")}
-            margin="normal"
-            variant='outlined'
+            type="number"
           />
       </div>
     );

@@ -13,8 +13,9 @@ import WeightAssessment from './WeightAssessment';
 import LandUse from './LandUse.js';
 import OrgInformation from './OrgInformation';
 import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
 
+import HabitatInformation from './HabitatInformation';
+import PreventativeMeasures from './PreventativeMeasures';
 
 
 function TabContainer(props) {
@@ -81,8 +82,9 @@ class ScrollableTabsButtonAuto extends React.Component {
             <Tab label="Site Condition" />
             <Tab label="Weight Assessment" />
             <Tab label="Land Use" />
-            <Tab label="Item Six" />
-            <Tab label="Item Seven" />
+            <Tab label="Habitat Info" />
+            <Tab label="Preventative Measures" />
+            <Tab label="Item 7" />
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><OrgInformation/></TabContainer>}
@@ -90,9 +92,9 @@ class ScrollableTabsButtonAuto extends React.Component {
         {value === 2 && <TabContainer><SiteCondition/></TabContainer>}
         {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
         {value === 4 && <TabContainer><LandUse /></TabContainer>}
-        {value === 5 && <TabContainer>Item Six</TabContainer>}
-        {value === 6 && <TabContainer>Item Seven</TabContainer>}
-
+        {value === 5 && <TabContainer><HabitatInformation /></TabContainer>}
+        {value === 6 && <TabContainer><PreventativeMeasures /></TabContainer>}
+        {value === 7 && <TabContainer>Item 7</TabContainer>}
       </div>
       <div style={{width:'100%', display: 'flex', justifyContent: 'center' }}>
       <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
