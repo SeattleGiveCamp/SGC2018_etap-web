@@ -13,7 +13,7 @@ webpackConfig.entry = ['babel-polyfill', `${__dirname}/Etap.Web/src/main.js`];
 
 webpackConfig.output = {
   filename: '[name].[hash].js',
-  path: `${__dirname}/Etap.Web/wwwroot/dist`,
+  path: `${__dirname}/build`, //changed to root level
   publicPath: '/',
 };
 

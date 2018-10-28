@@ -4,6 +4,7 @@
   "description": "The front-end for the ETAP app",
   "main": "index.js",
   "scripts": {
+    "start":"node ./Etap.Web/src/server.js",
     "test": "jest",
     "watch": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
@@ -89,6 +90,7 @@
     "webpack-merge": "^4.1.3"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-direct-import": "^0.5.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-es2015": "^6.24.1",

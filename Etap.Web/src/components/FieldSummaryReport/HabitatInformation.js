@@ -3,19 +3,14 @@ import { connect } from 'react-redux';
 import { withStyles, Typography, TextField } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  }
-}
-class SiteInformation extends Component {
+const styles = {}
+
+class HabitatInformation extends Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
     return (
-      <div className={classes.container}>
+      <Fragment>
           <TextField
             label="Site Name"
             className={classes.textField}
@@ -60,7 +55,7 @@ class SiteInformation extends Component {
             margin="normal"
             variant='outlined'
           />
-      </div>
+      </Fragment>
     );
   };
 };
@@ -69,4 +64,4 @@ const mapStateToProps = state => ({ state });
 const mapDispatchToProps = {setValue};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SiteInformation));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(HabitatInformation));
