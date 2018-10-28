@@ -50,7 +50,6 @@ class HabitatInformation extends Component {
             onChange={(e) => this.props.setValue(e.target.value, "habitatInformation", "waterways")}
             margin="normal"
             variant='outlined'
-            type="number"
           />
 
           <TextField
@@ -60,7 +59,6 @@ class HabitatInformation extends Component {
             onChange={(e) => this.props.setValue(e.target.value, "habitatInformation", "stormDrains")}
             margin="normal"
             variant='outlined'
-            type="number"
           />
 
           <TextField
@@ -70,7 +68,6 @@ class HabitatInformation extends Component {
             onChange={(e) => this.props.setValue(e.target.value, "habitatInformation", "criticalHabitat")}
             margin="normal"
             variant='outlined'
-            type="number"
           />
       </div>
     );

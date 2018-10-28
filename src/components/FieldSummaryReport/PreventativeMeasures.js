@@ -97,6 +97,15 @@ class PreventativeMeasures extends Component {
             variant='outlined'
             type="number"
           />
+
+          <TextField
+            label="Notes"
+            className={classes.textField}
+            value={formData.preventativeMeasures.notes}
+            onChange={(e) => this.props.setValue(e.target.value, "preventativeMeasures", "notes")}
+            margin="normal"
+            variant='outlined'
+          />
       </div>
     );
   };

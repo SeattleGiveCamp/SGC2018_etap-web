@@ -134,9 +134,9 @@ function initialState() {
       park: false,
     },
     habitatInformation: {
-      waterways: 0,
-      stormDrains: 0,
-      criticalHabitat: 0,
+      waterways: "",
+      stormDrains: "",
+      criticalHabitat: "",
     },
     preventativeMeasures: {
       captureDevices: 0,
@@ -145,6 +145,7 @@ function initialState() {
       sharpReceptacles: 0,
       cigaretteReceptacles: 0,
       other: 0,
+      notes: "",
     },
     generalObservation: "",
     categories: initialCategories
