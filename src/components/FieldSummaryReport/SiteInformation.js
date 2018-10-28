@@ -47,7 +47,7 @@ class SiteInformation extends Component {
           label={"Lat Boundary " + (i + 1)}
           className={classes.textField}
           value={formData.siteInfo.overallSiteBoundary[i].latitude.toString()}
-          onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i, "latitude")}
+          onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "latitude")}
           margin="normal"
           variant='outlined'
       />);
@@ -56,7 +56,7 @@ class SiteInformation extends Component {
         label={"Long Boundary " + (i + 1)}
         className={classes.textField}
         value={formData.siteInfo.overallSiteBoundary[i].longitude.toString()}
-        onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i, "longitude")}
+        onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "longitude")}
         margin="normal"
         variant='outlined'
       />);
