@@ -26,7 +26,7 @@ export default class App extends Component {
             <Route path='/lookup' component={Lookup} />
             <Route path='/siteInfo' component={SiteInfo} />
             <Route path='/Login' component={Login} />
-            {itemListObj.map(ele => <Route key={ele.id} path={`/${(ele.id) + 1}`} component={() => <TrashFormFields id={(ele.id) + 1} type={ele.type} />} />)}
+            {itemListObj.map(ele => <Route key={ele.id} path={`/${(ele.id) + 1}`} component={() => <TrashFormFields group={ele.group} id={(ele.id) + 1} type={ele.type} />} />)}
 
           </Fragment>
         </BrowserRouter>
