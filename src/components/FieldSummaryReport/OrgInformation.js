@@ -101,7 +101,7 @@ class OrgInformation extends Component {
         />
 
         <TextField
-            label="Counting Volunteers"npm
+            label="Counting Volunteers"
             className={classes.textField}
             value={formData.summary.litterCountingVolunteers}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "litterCountingVolunteers")}
