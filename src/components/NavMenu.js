@@ -120,7 +120,10 @@ class NavMenu extends React.Component {
             <List className={classes.li}>
               <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
                 <AccountCircle />
-                <Typography className={classes.listText} variant='body1'>Login</Typography>
+                <Typography className={classes.listText} variant='body1'>
+                  { window.localStorage.getItem("userName") ?  
+                    window.localStorage.getItem("userName") : 'Login'}
+                </Typography>
               </ Button>
             </List>
           </Link>
@@ -158,7 +161,7 @@ class NavMenu extends React.Component {
                   }
                 />
                 <Link to={`${(ele.id) + 1}`} className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
-                  <Typography variant='body2'><b>{`(${(ele.id) + 1})`}</b>{` [${ele.group}] ${ele.type}`}</Typography>
+                  <Typography variant='body2'><b>{`(${(ele.id) + 1})`}</b>{` [${ele.group}] `} <br /> {`${ele.type}`}</Typography>
                 </Link>
               </div>
               <Divider />
