@@ -33,10 +33,29 @@ const styles = theme => ({
     marginTop: 15,
     marginBottom: 10,
     margin: 'none',
+  },
+  map: {
+    width: '100%', 
+    height: '400px'
   }
 });
 
+var mymap;
+var currentPoly;
+
 class SiteInformation extends Component {
+  componentDidMount() {
+    mymap = L.map('mapid').setView([47.66943521141225,-122.14679157614904], 17);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox.streets'
+    }).addTo(mymap);
+  }
+
   createLatLongs = () => {
     const { state, classes } = this.props
     const { formData } = state
@@ -47,7 +66,7 @@ class SiteInformation extends Component {
           label={"Lat Boundary " + (i + 1)}
           className={classes.textField}
           value={formData.siteInfo.overallSiteBoundary[i].latitude.toString()}
-          onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "latitude")}
+          onChange={(e) => { this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "latitude"); this.updateMapPolygon()}}
           margin="normal"
           variant='outlined'
       />);
@@ -56,7 +75,7 @@ class SiteInformation extends Component {
         label={"Long Boundary " + (i + 1)}
         className={classes.textField}
         value={formData.siteInfo.overallSiteBoundary[i].longitude.toString()}
-        onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "longitude")}
+        onChange={(e) => { this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "longitude"); this.updateMapPolygon()}} 
         margin="normal"
         variant='outlined'
       />);
@@ -77,6 +96,32 @@ class SiteInformation extends Component {
     return fields;
   }
 
+  updateMapPolygon(lat = null, long = null) {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    var latlongarray = [];
+    for(var latlong in formData.siteInfo.overallSiteBoundary) {
+      latlongarray.push([formData.siteInfo.overallSiteBoundary[latlong].latitude, formData.siteInfo.overallSiteBoundary[latlong].longitude]);
+    }
+    if(lat && long) latlongarray.push([lat, long]);
+
+    if(latlongarray.length === 1 && lat && long) {
+      mymap.setView([lat, long], 17);
+    }
+    else if (latlongarray.length === 1) {
+      mymap.setView([latlongarray[0][0], latlongarray[0][1]], 17);
+    }
+
+    var poly = L.polygon(latlongarray);
+    if (currentPoly) {
+      currentPoly.removeFrom(mymap);
+    }
+
+    currentPoly = poly;
+    poly.addTo(mymap).bindPopup("Current cleanup site bounds");
+  }
+
   captureCurrentLocation = () => {
     const { state, classes } = this.props
     const { formData } = state
@@ -86,9 +131,12 @@ class SiteInformation extends Component {
         this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
         this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
 
+        this.updateMapPolygon(position.coords.latitude, position.coords.longitude);
+
         let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
         this.props.setValue({latitude: position.coords.latitude, longitude: position.coords.longitude}, "siteInfo", "overallSiteBoundary", newKey.toString());
-      }).catch(() => {
+      }).catch((e) => {
+        console.error(e);
         console.warn("no location found, using defaults");
         this.props.setValue(0, "siteInfo", "userLatitude");
         this.props.setValue(0, "siteInfo", "userLongitude");
@@ -108,6 +156,8 @@ class SiteInformation extends Component {
       delete this.props.state.formData.siteInfo.overallSiteBoundary[lastKey-1];
       // very jank method to force the page to refresh
       this.props.setValue(this.props.state.formData.siteInfo.userLongitude, "siteInfo", "userLongitude");
+
+      this.updateMapPolygon();
     }
   }
 
@@ -155,15 +205,15 @@ class SiteInformation extends Component {
             variant='outlined'
           />
 
-          {/* <div id="mapid" style="width: 600px; height: 400px;"></div> */}
-
           {this.createLatLongs()}
+
+          {this.createDeleteButton()}
+
+          <div id={"mapid"} className={classes.map} ></div>
 
           <Button className={classes.locationButton} onClick={this.captureCurrentLocation}>
             Add Current Location
           </Button>
-
-          {this.createDeleteButton()}
       </div>
     );
   };
