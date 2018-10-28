@@ -29,8 +29,8 @@ const styles = theme => ({
   submitButton: {
     backgroundColor: '#60783A',
     color: '#ffffff',
-    margin: 'auto',
-    width: '200px',
+    margin: 'none',
+    minWidth: '100%',
   }
 });
 

@@ -38,17 +38,19 @@ const styles = theme => ({
     display: 'auto',
   },
   submitButton: {
+    width: '95%',
     backgroundColor: '#60783A',
     color: '#ffffff',
     margin: 'none',
-    width: '200px',
+    minWidth: '100%',
   },
   submitButtonDisabled: {
+    width: '95%',
     backgroundColor: '#60783A',
     opacity: .5,
     color: '#ffffff',
     margin: 'none',
-    width: '200px',
+    minWidth: '100%',
   }
 });
 
@@ -112,11 +114,11 @@ class ScrollableTabsButtonAuto extends React.Component {
           {value === 7 && <TabContainer><GeneralObservations /></TabContainer>}
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <Tooltip disableHoverListener title="Please login to submit." >
-            <div>
-              <Button variant='outlined' disabled={formData.userInfo.token === "" ? true : false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>Submit</Button>
-            </div>
-          </Tooltip>
+          {formData.userInfo.token === "" ? 'Please login to submit' : ''}
+        </div>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <br />
+          <Button variant='outlined' disabled={formData.userInfo.token === "" ? true : false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>Submit</Button>
         </div>
       </Fragment>
     );
