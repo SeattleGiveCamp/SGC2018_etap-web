@@ -4,7 +4,8 @@ A prototype application for the cataloging/categorization and tracking of litter
 ## Getting Started
 - You will need:
     - NodeJS
-
+## Running Locally
+- To run locally, you willl need to run the command `npm run watch` in the root directory of the project.
 ## Contribution Guidelines
 - NO PASSWORDS OR CREDENTIALS CHECKED IN!
     - The `.gitignore` will ignore a directory named `secrets/`, put them there.
