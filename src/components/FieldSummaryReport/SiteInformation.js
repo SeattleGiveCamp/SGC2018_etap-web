@@ -34,10 +34,29 @@ const styles = theme => ({
     marginTop: 15,
     marginBottom: 10,
     margin: 'auto',
+  },
+  map: {
+    width: '100%', 
+    height: '400px'
   }
 });
 
+var mymap;
+var currentPoly;
+
 class SiteInformation extends Component {
+  componentDidMount() {
+    mymap = L.map('mapid').setView([47.66943521141225,-122.14679157614904], 17);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      id: 'mapbox.streets'
+    }).addTo(mymap);
+  }
+
   createLatLongs = () => {
     const { state, classes } = this.props
     const { formData } = state
@@ -89,7 +108,26 @@ class SiteInformation extends Component {
 
         let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
         this.props.setValue({latitude: position.coords.latitude, longitude: position.coords.longitude}, "siteInfo", "overallSiteBoundary", newKey.toString());
-      }).catch(() => {
+
+        var lat = [];
+        for(var latlong in formData.siteInfo.overallSiteBoundary) {
+          lat.push([formData.siteInfo.overallSiteBoundary[latlong].latitude, formData.siteInfo.overallSiteBoundary[latlong].longitude]);
+        }
+        lat.push([position.coords.latitude, position.coords.longitude]);
+
+        if(lat.length === 1) {
+          mymap.setView([position.coords.latitude, position.coords.longitude], 17);
+        }
+
+        var poly = L.polygon(lat);
+        if (currentPoly) {
+          currentPoly.removeFrom(mymap);
+        }
+
+        currentPoly = poly;
+        poly.addTo(mymap).bindPopup("Current cleanup site bounds");
+      }).catch((e) => {
+        console.error(e);
         console.warn("no location found, using defaults");
         this.props.setValue(0, "siteInfo", "userLatitude");
         this.props.setValue(0, "siteInfo", "userLongitude");
@@ -156,15 +194,15 @@ class SiteInformation extends Component {
             variant='outlined'
           />
 
-          {/* <div id="mapid" style="width: 600px; height: 400px;"></div> */}
-
           {this.createLatLongs()}
+
+          {this.createDeleteButton()}
+
+          <div id={"mapid"} className={classes.map} ></div>
 
           <Button className={classes.locationButton} onClick={this.captureCurrentLocation}>
             Add Current Location
           </Button>
-
-          {this.createDeleteButton()}
       </div>
     );
   };
