@@ -144,6 +144,8 @@ class TrashFormFields extends Component {
             <option value="lbs">lbs</option>
             <option value="grams">grams</option>
             <option value="ounces">ounces</option>
+            <option value="ounces">gn</option>
+
           </Select>
         </FormControl>
                 </div>
