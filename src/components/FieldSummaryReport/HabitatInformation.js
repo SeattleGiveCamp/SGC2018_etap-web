@@ -8,9 +8,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    maxWidth: 350,
+  },
+  textField: {
+      maxWidth: 350,
+      marginTop: 10,
+      marginBottom: 10,
+      margin: 'auto',
   }
 }
+
 class HabitatInformation extends Component {
   render() {
     const { state, classes } = this.props
