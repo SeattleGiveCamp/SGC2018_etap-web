@@ -66,38 +66,38 @@ class ScrollableTabsButtonAuto extends React.Component {
 
     return (
       <Fragment>
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            scrollable
-            scrollButtons="auto"
-          >
-            <Tab label="Org Info" />
-            <Tab label="Site Info" />
-            <Tab label="Site Condition" />
-            <Tab label="Weight Assessment" />
-            <Tab label="Land Use" />
-            <Tab label="Habitat Info" />
-            <Tab label="Preventative Measures" />
+        <div className={classes.root}>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              scrollable
+              scrollButtons="auto"
+            >
+              <Tab label="Org Info" />
+              <Tab label="Site Info" />
+              <Tab label="Site Condition" />
+              <Tab label="Weight Assessment" />
+              <Tab label="Land Use" />
+              <Tab label="Habitat Info" />
+              <Tab label="Preventative Measures" />
               <Tab label="General Observations" />
-          </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer><OrgInformation/></TabContainer>}
-        {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
-        {value === 2 && <TabContainer><SiteCondition/></TabContainer>}
-        {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
-        {value === 4 && <TabContainer><LandUse /></TabContainer>}
-        {value === 5 && <TabContainer><HabitatInformation /></TabContainer>}
-        {value === 6 && <TabContainer><PreventativeMeasures /></TabContainer>}
-          {value === 6 && <TabContainer><GeneralObservations /></TabContainer>}
-      </div>
-      <div style={{width:'100%', display: 'flex', justifyContent: 'center' }}>
-      <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
-      </div>
+            </Tabs>
+          </AppBar>
+          {value === 0 && <TabContainer><OrgInformation /></TabContainer>}
+          {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
+          {value === 2 && <TabContainer><SiteCondition /></TabContainer>}
+          {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
+          {value === 4 && <TabContainer><LandUse /></TabContainer>}
+          {value === 5 && <TabContainer><HabitatInformation /></TabContainer>}
+          {value === 6 && <TabContainer><PreventativeMeasures /></TabContainer>}
+          {value === 7 && <TabContainer><GeneralObservations /></TabContainer>}
+        </div>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+        </div>
       </Fragment>
     );
   }

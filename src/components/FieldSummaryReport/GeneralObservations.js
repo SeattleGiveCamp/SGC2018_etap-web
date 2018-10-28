@@ -35,8 +35,8 @@ class GeneralObservations extends Component {
                 <TextField
                     label="Notes"
                     className={classes.textArea}
-                    value={formData.generalObservations}
-                    onChange={(e) => this.props.setValue(e.target.value, "generalObservations")}
+                    value={formData.generalObservation}
+                    onChange={(e) => this.props.setValue(e.target.value, "generalObservation")}
                     margin="normal"
                     variant="outlined"
                     type="string"
