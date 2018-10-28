@@ -12,30 +12,33 @@ class WeightAssessment extends Component {
     return (
       <Fragment>
           <TextField
-            label="Total Litter Weight"
+            label="Total Litter Weight (lbs)"
             className={classes.textField}
-            value={formData.siteInfo.totalWeight}
+            value={formData.weightAssessment.totalWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "totalWeight")}
             margin="normal"
             variant='outlined'
+            type='number'
           />
 
           <TextField
             label="Total Garbage Weight"
             className={classes.textField}
-            value={formData.siteInfo.garbageWeight}
+            value={formData.weightAssessment.garbageWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "garbageWeight")}
             margin="normal"
             variant='outlined'
+            type='number'
           />
 
           <TextField
             label="Total recyclables Weight"
             className={classes.textField}
-            value={formData.siteInfo.recycleWeight}
+            value={formData.weightAssessment.recycleWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "recycleWeight")}
             margin="normal"
             variant='outlined'
+            type='number'
           />
 
       </Fragment>

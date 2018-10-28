@@ -6,12 +6,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import SiteInformation from './SiteInformation';
-<<<<<<< HEAD
-=======
+
 import WeightAssessment from './WeightAssessment';
+import LandUse from './LandUse.js';
 import OrgInformation from './OrgInformation';
 
->>>>>>> c6231927e428249400e31704535002b075afda6d
 
 function TabContainer(props) {
   return (
@@ -58,16 +57,10 @@ class ScrollableTabsButtonAuto extends React.Component {
             scrollButtons="auto"
           >
             <Tab label="Org Info" />
-<<<<<<< HEAD
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
-            <Tab label="Item Four" />
-=======
             <Tab label="Site Info" />
             <Tab label="Item Three" />
             <Tab label="Weight Assessment" />
->>>>>>> c6231927e428249400e31704535002b075afda6d
-            <Tab label="Item Five" />
+            <Tab label="Land Use" />
             <Tab label="Item Six" />
             <Tab label="Item Seven" />
           </Tabs>
@@ -75,12 +68,8 @@ class ScrollableTabsButtonAuto extends React.Component {
         {value === 0 && <TabContainer><OrgInformation/></TabContainer>}
         {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
         {value === 2 && <TabContainer>Item Three</TabContainer>}
-<<<<<<< HEAD
-        {value === 3 && <TabContainer>Item Four</TabContainer>}
-=======
         {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
->>>>>>> c6231927e428249400e31704535002b075afda6d
-        {value === 4 && <TabContainer>Item Five</TabContainer>}
+        {value === 4 && <TabContainer><LandUse /></TabContainer>}
         {value === 5 && <TabContainer>Item Six</TabContainer>}
         {value === 6 && <TabContainer>Item Seven</TabContainer>}
       </div>
