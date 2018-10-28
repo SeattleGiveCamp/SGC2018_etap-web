@@ -2,6 +2,7 @@
 # Add project-specific here:
 secrets/
 .vscode/
+.DS_Store
 # Created by https://www.gitignore.io/api/csharp
 
 ### Csharp ###

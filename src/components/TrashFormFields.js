@@ -2,31 +2,42 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withStyles, Typography, TextField } from '@material-ui/core/'
 import { setValue } from '../ducks/formData';
-// import { itemListObj } from '../ducks/checklist.js';
 
-const styles = {}
-
-// pass them the id of the menu item
-// through redux props
+const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    textField: {
+        maxWidth: 350,
+        marginTop: 10,
+        marginBottom: 10,
+        margin: 'auto',
+    }
+  }
 
 class TrashFormFields extends Component {
 
-    // impor the action creator to send the payload to
-    handleSubmit = (event) => {
+    constructor(props) {
+        super(props)
+    }
 
+    componentDidMount() {
+        this.props.setValue(this.props.type, "categories", this.props.id, "type")
     }
 
     render() {
         const { state, classes } = this.props
         const { formData } = state
         return (
-            <Fragment>
-
+            <div className={classes.container}>
+                <h2 style={{textAlign: 'center'}}>{this.props.type}</h2>
                 <TextField
                     label="Total"
                     className={classes.textField}
-                    value={formData.siteInfo.siteName}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteName")}
+                    value={formData.categories[this.props.id].total}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "total")}
                     margin="normal"
                     variant="outlined"
                     type="number"
@@ -35,19 +46,18 @@ class TrashFormFields extends Component {
                 <TextField
                     label={"Double Count"}
                     className={classes.textField}
-                    value={formData.siteInfo.siteLocation}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteLocation")}
+                    value={formData.categories[this.props.id].doubleCount}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "doubleCount")}
                     margin="normal"
                     variant='outlined'
                     type="number"
                 />
 
-                {/* these are the four items in the in threat assesment portion */}
                 <TextField
                     label="Shiny"
                     className={classes.textField}
-                    value={formData.siteInfo.overallSiteBoundary}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
+                    value={formData.categories[this.props.id].shiny}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "shiny")}
                     margin="normal"
                     variant='outlined'
                 />
@@ -55,8 +65,8 @@ class TrashFormFields extends Component {
                 <TextField
                     label="Closed Loop"
                     className={classes.textField}
-                    value={formData.siteInfo.overallSiteBoundary}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
+                    value={formData.categories[this.props.id].closedLoop}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "closedLoop")}
                     margin="normal"
                     variant='outlined'
                 />
@@ -64,8 +74,8 @@ class TrashFormFields extends Component {
                 <TextField
                     label="Open Container"
                     className={classes.textField}
-                    value={formData.siteInfo.overallSiteBoundary}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
+                    value={formData.categories[this.props.id].openContainer}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "openContainer")}
                     margin="normal"
                     variant='outlined'
                 />
@@ -73,8 +83,8 @@ class TrashFormFields extends Component {
                 <TextField
                     label="Fouled"
                     className={classes.textField}
-                    value={formData.siteInfo.overallSiteBoundary}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
+                    value={formData.categories[this.props.id].fouled}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "fouled")}
                     margin="normal"
                     variant='outlined'
                 />
@@ -82,8 +92,8 @@ class TrashFormFields extends Component {
                 <TextField
                     label="Item Notes"
                     className={classes.textField}
-                    value={formData.siteInfo.boundaryNotes}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "boundaryNotes")}
+                    value={formData.categories[this.props.id].itemNotes}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "itemNotes")}
                     margin="normal"
                     variant='outlined'
                 />
@@ -91,24 +101,19 @@ class TrashFormFields extends Component {
                 <TextField
                     label="Weight"
                     className={classes.textField}
-                    value={formData.siteInfo.totalSiteArea}
-                    onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "totalSiteArea")}
+                    value={formData.categories[this.props.id].weight}
+                    onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "weight")}
                     margin="normal"
                     variant='outlined'
                     type="number"
                 />
 
-            </Fragment>
+            </div>
         );
     };
 };
 
-////////////////////////////////////////////////////////////
-// WE NEED A SUBMIT BUTTON ATTACHED TO AN ACTION CREATOR
-////////////////////////////////////////////////////////////
-
 const mapStateToProps = state => ({ state });
 const mapDispatchToProps = { setValue };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(TrashFormFields));

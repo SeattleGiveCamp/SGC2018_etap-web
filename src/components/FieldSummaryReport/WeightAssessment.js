@@ -8,8 +8,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  textField: {
+      maxWidth: 350,
+      marginTop: 10,
+      marginBottom: 10,
+      margin: 'auto',
   }
 }
+
 class WeightAssessment extends Component {
   render() {
     const { state, classes } = this.props

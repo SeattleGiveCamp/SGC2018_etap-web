@@ -8,9 +8,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    maxWidth: 350,
   }
 }
-class SiteInformation extends Component {
+class HabitatInformation extends Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
@@ -69,4 +70,4 @@ const mapStateToProps = state => ({ state });
 const mapDispatchToProps = {setValue};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SiteInformation));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(HabitatInformation));
