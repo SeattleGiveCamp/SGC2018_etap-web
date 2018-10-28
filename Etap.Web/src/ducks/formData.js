@@ -7,10 +7,6 @@ const UPDATEARRAY = "UPDATEARRAY";
 
 //action creators
 export const setValue = (value, key1, key2 = null, key3 = null) => {
-  /*
-    key 1 is the categories key (bags cups etc the slideout menu items )
-    key 2 
-  */
   return {
     type: SETVALUE,
     payload: buildVariantDynamicObject(value, key1, key2, key3)
@@ -80,26 +76,30 @@ function updateValue(payload, newState) {
 }
 
 function initialState() {
-  let initialCategories = [];
-  console.log(staticCategories.categories);
-  for (let cat in staticCategories.categories) {
-    initialCategories.push({
-      category: {
-        group: "",
-        number: 0,
-        name: "",
-        totalCount: 0,
-        threatAssessmentCounts: {
-          shinyCount: 0,
-          closedLoopCount: 0,
-          openContainerCount: 0,
-          fouledCount: 0
-        },
-        notes: "",
-        weight: 0,
-        weightUnit: ""
-      }
-    });
+  // let initialCategories = [];
+  // console.log(staticCategories.categories);
+  // for (let cat in staticCategories.categories) {
+  //   initialCategories.push({
+  //     category: {
+  //       group: "",
+  //       number: 0,
+  //       name: "",
+  //       totalCount: 0,
+  //       threatAssessmentCounts: {
+  //         shinyCount: 0,
+  //         closedLoopCount: 0,
+  //         openContainerCount: 0,
+  //         fouledCount: 0
+  //       },
+  //       notes: "",
+  //       weight: 0,
+  //       weightUnit: ""
+  //     }
+  //   });
+  // }
+  let initialCategories = {};
+  for (let i = 0; i < 45; i++) {
+    initialCategories[i] = {}
   }
 
   return {
