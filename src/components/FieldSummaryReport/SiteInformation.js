@@ -23,13 +23,13 @@ const styles = theme => ({
     border: '1px solid rgba(0, 0, 0, 0.23)'
   },
   textField: {
-      maxWidth: 350,
+      minWidth: '100%',
       marginTop: 10,
       marginBottom: 10,
       margin: 'none',
   },
   formControl: {
-    maxWidth: 350,
+    minWidth: '100%',
     marginTop: 15,
     marginBottom: 10,
     margin: 'none',
@@ -47,7 +47,7 @@ class SiteInformation extends Component {
           label={"Lat Boundary " + (i + 1)}
           className={classes.textField}
           value={formData.siteInfo.overallSiteBoundary[i].latitude.toString()}
-          onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i, "latitude")}
+          onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "latitude")}
           margin="normal"
           variant='outlined'
       />);
@@ -56,7 +56,7 @@ class SiteInformation extends Component {
         label={"Long Boundary " + (i + 1)}
         className={classes.textField}
         value={formData.siteInfo.overallSiteBoundary[i].longitude.toString()}
-        onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i, "longitude")}
+        onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "longitude")}
         margin="normal"
         variant='outlined'
       />);

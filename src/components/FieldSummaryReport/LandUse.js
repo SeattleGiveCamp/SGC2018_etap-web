@@ -19,7 +19,7 @@ const styles = theme => ({
     justifyContent: 'center',
   },
   textField: {
-      maxWidth: 350,
+      minWidth: '100%',
       marginTop: 15,
       marginBottom: 15,
       margin: 'none',
