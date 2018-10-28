@@ -1,16 +1,44 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField } from '@material-ui/core/'
+import { withStyles, TextField, FormControl, FormLabel } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 import getLocation from '../../lib/location';
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  formHeading: {
+    margin: theme.spacing.unit * 3
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+<<<<<<< Updated upstream
   }
 }
+=======
+  },
+  textField: {
+      maxWidth: 350,
+      marginTop: 10,
+      marginBottom: 10,
+      margin: 'auto',
+  },
+  formControl: {
+    width: '52vw',
+    maxWidth: 350,
+    marginTop: 15,
+    marginBottom: 10,
+    margin: 'auto',
+  }
+});
+
+>>>>>>> Stashed changes
 class SiteInformation extends Component {
   constructor(props) {
     super(props);
@@ -78,6 +106,9 @@ class SiteInformation extends Component {
     const { formData } = state
     return (
       <div className={classes.container}>
+        <FormControl component="fieldset" className={classes.formHeading}>
+          <FormLabel component="legend">Site Information</FormLabel>
+        </FormControl>
           <TextField
             label="Site Name"
             className={classes.textField}

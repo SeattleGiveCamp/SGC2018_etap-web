@@ -1,9 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField } from '@material-ui/core/'
+import { withStyles, TextField, FormControl, FormLabel } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  formHeading: {
+    margin: theme.spacing.unit * 3
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -14,8 +23,15 @@ const styles = {
       marginTop: 10,
       marginBottom: 10,
       margin: 'auto',
+  },
+  formControl: {
+    width: '52vw',
+    maxWidth: 350,
+    marginTop: 15,
+    marginBottom: 10,
+    margin: 'auto',
   }
-}
+});
 
 class WeightAssessment extends Component {
   render() {
@@ -23,36 +39,38 @@ class WeightAssessment extends Component {
     const { formData } = state
     return (
       <div className={classes.container}>
-          <TextField
-            label="Total Litter Weight (lbs)"
-            className={classes.textField}
-            value={formData.weightAssessment.totalWeight}
-            onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "totalWeight")}
-            margin="normal"
-            variant='outlined'
-            type='number'
-          />
+        <FormControl component="fieldset" className={classes.formHeading}>
+          <FormLabel component="legend">Weight Assessment</FormLabel>
+        </FormControl>
+        <TextField
+          label="Total Litter Weight (lbs)"
+          className={classes.textField}
+          value={formData.weightAssessment.totalWeight}
+          onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "totalWeight")}
+          margin="normal"
+          variant='outlined'
+          type='number'
+        />
 
-          <TextField
-            label="Total Garbage Weight"
-            className={classes.textField}
-            value={formData.weightAssessment.garbageWeight}
-            onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "garbageWeight")}
-            margin="normal"
-            variant='outlined'
-            type='number'
-          />
+        <TextField
+          label="Total Garbage Weight"
+          className={classes.textField}
+          value={formData.weightAssessment.garbageWeight}
+          onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "garbageWeight")}
+          margin="normal"
+          variant='outlined'
+          type='number'
+        />
 
-          <TextField
-            label="Total recyclables Weight"
-            className={classes.textField}
-            value={formData.weightAssessment.recycleWeight}
-            onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "recycleWeight")}
-            margin="normal"
-            variant='outlined'
-            type='number'
-          />
-
+        <TextField
+          label="Total recyclables Weight"
+          className={classes.textField}
+          value={formData.weightAssessment.recycleWeight}
+          onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "recycleWeight")}
+          margin="normal"
+          variant='outlined'
+          type='number'
+        />
       </div>
     );
   };
