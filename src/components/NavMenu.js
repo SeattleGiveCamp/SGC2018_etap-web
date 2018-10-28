@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -12,9 +12,10 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { FileDocumentBoxMultipleOutline, CheckboxBlankOutline, Magnify} from 'mdi-material-ui';
+import { FileDocumentBoxMultipleOutline, CheckboxBlankOutline, Magnify } from 'mdi-material-ui';
 
-import {checked} from '../ducks/checklist.js';
+import { checked } from '../ducks/checklist.js';
+import { itemListObj } from '../ducks/checklist.js';
 
 const styles = theme => {
 
@@ -75,6 +76,8 @@ const styles = theme => {
   };
 };
 
+
+
 class NavMenu extends React.Component {
   state = {
     left: false,
@@ -105,9 +108,13 @@ class NavMenu extends React.Component {
   render() {
     const { classes, checklist, checked } = this.props;
 
+    // {type:'Bags', id:1}
+    // in order to handle if the arrangement changes, give each item an ID
+
     const sideList = (
       <div className={classes.list}>
         <Typography className={classes.menu} variant='h6'>Menu</Typography>
+
         <Typography>
           <Link to='/FieldSummaryReport' className={classes.link}>
             <List className={classes.li}>
@@ -119,7 +126,7 @@ class NavMenu extends React.Component {
           </Link><Link to='/Lookup' className={classes.link}>
             <List className={classes.li}>
               <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
-                <Magnify/>
+                <Magnify />
                 <Typography className={classes.listText} variant='body1'>Category Help</Typography>
               </ Button>
             </List>
@@ -127,58 +134,32 @@ class NavMenu extends React.Component {
         </Typography>
         <Divider />
 
-        <div className={classes.checkboxContainer}>
-          <FormControlLabel
-            className={classes.checkbox}
-            control={
-              <Checkbox
-                checked={checklist.foo}
-                onChange={() => checked('foo', checklist.foo)}
-                value="foo"
-              />
-            }
-          />
-          <Link to='foo' className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
-          <Typography variant='body2'>Foo</Typography>
-          </Link>
-        </div>
-        <Divider />
-
-      <div className={classes.checkboxContainer}>
-          <FormControlLabel
-            className={classes.checkbox}
-            control={
-              <Checkbox
-                checked={checklist.bar}
-                onChange={() => checked('bar', checklist.bar)}
-                value="bar"
-              />
-            }
-          />
-          <Link to='bar' className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
-          <Typography variant='body2'>Bar</Typography>
-          </Link>
-        </div>
-        <Divider />
-
-      <div className={classes.checkboxContainer}>
-          <FormControlLabel
-            className={classes.checkbox}
-            control={
-              <Checkbox
-                checked={checklist.baz}
-                onChange={() => checked('baz', checklist.baz)}
-                value="baz"
-              />
-            }
-          />
-          <Link to='baz' className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
-          <Typography variant='body2'>Baz</Typography>
-          </Link>
-        </div>
-        <Divider />
+        {itemListObj.map(ele => {
+          return (
+            <div key={ele.id}>
+              <div className={classes.checkboxContainer}>
+                <FormControlLabel
+                  className={classes.checkbox}
+                  control={
+                    <Checkbox
+                      checked={checklist[ele.type]}
+                      onChange={() => checked(ele.type, checklist[ele.type])}
+                      value={ele.type}
+                    />
+                  }
+                />
+                <Link to={`${ele.id}`} className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
+                  <Typography variant='body2'>{ele.type}</Typography>
+                </Link>
+              </div>
+              <Divider />
+            </div>
+          )
+        })
+        }
       </div >
     );
+
 
     return (
       <div className={classes.navMenu}>
@@ -203,8 +184,8 @@ class NavMenu extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({checklist: state.checklist})
+const mapStateToProps = state => ({ checklist: state.checklist })
 
-const mapDispatchToProps = {checked}
+const mapDispatchToProps = { checked }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NavMenu));

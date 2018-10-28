@@ -3,42 +3,50 @@ import { connect } from 'react-redux';
 import { withStyles, Typography, TextField } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {}
-
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  }
+}
 class WeightAssessment extends Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
     return (
-      <Fragment>
+      <div className={classes.container}>
           <TextField
-            label="Total Litter Weight"
+            label="Total Litter Weight (lbs)"
             className={classes.textField}
-            value={formData.siteInfo.totalWeight}
+            value={formData.weightAssessment.totalWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "totalWeight")}
             margin="normal"
             variant='outlined'
+            type='number'
           />
 
           <TextField
             label="Total Garbage Weight"
             className={classes.textField}
-            value={formData.siteInfo.garbageWeight}
+            value={formData.weightAssessment.garbageWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "garbageWeight")}
             margin="normal"
             variant='outlined'
+            type='number'
           />
 
           <TextField
             label="Total recyclables Weight"
             className={classes.textField}
-            value={formData.siteInfo.recycleWeight}
+            value={formData.weightAssessment.recycleWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "recycleWeight")}
             margin="normal"
             variant='outlined'
+            type='number'
           />
 
-      </Fragment>
+      </div>
     );
   };
 };

@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import {withStyles, TextField, Select, FormControl, InputLabel, OutlinedInput} from '@material-ui/core/';
 import { setValue } from '../../ducks/formData';
 
-const styles = {}
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  }
+}
 
 class OrgInformation extends Component {
   render() {
@@ -11,7 +17,7 @@ class OrgInformation extends Component {
     const { formData } = state
 
     return (
-      <Fragment>
+      <div className={classes.container}>
         <TextField
             label="Team Leader"
             classes={classes.TextField}
@@ -49,7 +55,7 @@ class OrgInformation extends Component {
             variant="outlined"
         />
 
-        <FormControl variant="outlined" style={{width:190}}>
+        <FormControl variant="outlined" style={{width: '83vw', margin: 'auto', marginTop: 10}}>
           <InputLabel shrink={true}>
             Time Spent
           </InputLabel>
@@ -90,7 +96,7 @@ class OrgInformation extends Component {
             variant="outlined"
             type="number"
         />
-      </Fragment>
+      </div>
     );
   };
 };
