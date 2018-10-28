@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField } from '@material-ui/core/'
+import { withStyles, Typography, TextField, FormControl, FormControlLabel, Select, InputLabel, OutlinedInput } from '@material-ui/core/'
 import { setValue } from '../ducks/formData';
 
 const styles = {
@@ -14,11 +14,29 @@ const styles = {
         marginTop: 10,
         marginBottom: 10,
         margin: 'auto',
+    },
+    weightContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        maxWidth: 350,
+        marginTop: 10,
+        marginBottom: 10,
+        margin: 'auto',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    weightField: {
+        marginTop: 10,
+        width: '30%',
+    },
+    formControl: {
+        width: '31%',
+        marginLeft: 10,
     }
   }
 
 class TrashFormFields extends Component {
-
+    
     constructor(props) {
         super(props)
     }
@@ -98,15 +116,39 @@ class TrashFormFields extends Component {
                     variant='outlined'
                 />
 
+                <div className={classes.weightContainer}>
                 <TextField
                     label="Weight"
-                    className={classes.textField}
+                    className={classes.weightField}
                     value={formData.categories[this.props.id].weight}
                     onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "weight")}
                     margin="normal"
                     variant='outlined'
-                    type="number"
                 />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel shrink={true}>
+            Unit
+          </InputLabel>
+          <Select
+            native
+            value={formData.categories[this.props.id].weightUnit}
+            onChange={(e) => this.props.setValue(e.target.value, "categories", this.props.id, "weight unit")}
+            input={
+              <OutlinedInput
+                name="unit"
+                labelWidth={75}
+              />
+            }
+          >
+            <option value=""></option>
+            <option value="lbs">lbs</option>
+            <option value="grams">grams</option>
+            <option value="ounces">ounces</option>
+            <option value="ounces">gn</option>
+
+          </Select>
+        </FormControl>
+                </div>
 
             </div>
         );

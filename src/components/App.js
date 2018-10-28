@@ -9,6 +9,7 @@ import Template from './Template.js';
 import FormContainer from './FieldSummaryReport/FormContainer';
 import Lookup from './Lookup.js';
 import SiteInfo from './SiteInfo.js';
+import Login from "./Login.js";
 import TrashFormFields from './TrashFormFields.js';
 import { itemListObj } from '../ducks/checklist.js';
 
@@ -24,6 +25,7 @@ export default class App extends Component {
             <Route path='/FieldSummaryReport' component={FormContainer} />
             <Route path='/lookup' component={Lookup} />
             <Route path='/siteInfo' component={SiteInfo} />
+            <Route path='/Login' component={Login} />
             {itemListObj.map(ele => <Route key={ele.id} path={`/${ele.id}`} component={() => <TrashFormFields id={ele.id} type={ele.type} />} />)}
 
           </Fragment>

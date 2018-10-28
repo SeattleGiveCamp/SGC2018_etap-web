@@ -1,15 +1,30 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, TextField } from '@material-ui/core/'
+import { withStyles, TextField, FormControl, FormLabel, FormHelperText } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  formHeading: {
+    margin: theme.spacing.unit * 3
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`
+  },
     container: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+    },
+    textField: {
+        maxWidth: 350,
+        marginTop: 10,
+        marginBottom: 10,
+        margin: 'auto',
     }
-  }
+});
 
 class PreventativeMeasures extends Component {
   render() {
@@ -18,6 +33,11 @@ class PreventativeMeasures extends Component {
 
     return (
         <div className={classes.container}>
+          <FormControl component="fieldset" className={classes.formHeading}>
+            <FormLabel component="legend">Preventative measures</FormLabel>
+            <FormHelperText>Indicate a number to all that apply</FormHelperText>
+          </FormControl>
+
           <TextField
             label="Capture Devices"
             className={classes.textField}
