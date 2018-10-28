@@ -8,6 +8,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    maxWidth: 350,
   }
 }
 class SiteInformation extends Component {

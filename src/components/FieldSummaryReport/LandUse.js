@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 import { withStyles, FormControl, InputLabel, Select, OutlinedInput } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {}
-
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    maxWidth: 350,
+  }
+}
 class LandUse extends Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
     return (
-      <Fragment>
+      <div className={classes.container}>
 
          <FormControl variant="outlined" >
           <InputLabel
@@ -49,7 +55,7 @@ heat processing)</option>
           </Select>
         </FormControl>
 
-      </Fragment>
+      </div>
     );
   };
 };

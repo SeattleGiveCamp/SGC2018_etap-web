@@ -3,7 +3,19 @@ import { connect } from 'react-redux';
 import { withStyles, Typography, TextField } from '@material-ui/core/'
 import { setValue } from '../ducks/formData';
 
-const styles = {}
+const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    textField: {
+        maxWidth: 350,
+        marginTop: 10,
+        marginBottom: 10,
+        margin: 'auto',
+    }
+  }
 
 class TrashFormFields extends Component {
 
@@ -19,8 +31,8 @@ class TrashFormFields extends Component {
         const { state, classes } = this.props
         const { formData } = state
         return (
-            <Fragment>
-                <h2>{this.props.type}</h2>
+            <div className={classes.container}>
+                <h2 style={{textAlign: 'center'}}>{this.props.type}</h2>
                 <TextField
                     label="Total"
                     className={classes.textField}
@@ -96,7 +108,7 @@ class TrashFormFields extends Component {
                     type="number"
                 />
 
-            </Fragment>
+            </div>
         );
     };
 };
