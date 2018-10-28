@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button';
 import GeneralObservations from './GeneralObservations.js';
 import HabitatInformation from './HabitatInformation';
 import PreventativeMeasures from './PreventativeMeasures';
+import cookies from 'react-cookies';
 
 function TabContainer(props) {
   return (
@@ -54,8 +55,15 @@ const styles = theme => ({
 
 class ScrollableTabsButtonAuto extends React.Component {
   state = {
-    value: 0,
+    value: 0
   };
+
+  componentDidMount() {
+    const cookie = cookies.load("token");
+    if(cookie !== undefined && cookie !== null && cookie.length > 0) {
+      this.props.setValue(cookie, 'userInfo', 'token');
+    }
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -114,7 +122,7 @@ class ScrollableTabsButtonAuto extends React.Component {
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           <Tooltip disableHoverListener title="Please login to submit." >
             <div>
-              <Button variant='outlined' disabled={formData.userInfo.token === "" ? true : false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>Submit</Button>
+              <Button variant='outlined' disabled={formData.userInfo.token ? true :false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>Submit</Button>
             </div>
           </Tooltip>
         </div>
@@ -122,6 +130,7 @@ class ScrollableTabsButtonAuto extends React.Component {
     );
   }
 }
+
 
 ScrollableTabsButtonAuto.propTypes = {
   classes: PropTypes.object.isRequired,
