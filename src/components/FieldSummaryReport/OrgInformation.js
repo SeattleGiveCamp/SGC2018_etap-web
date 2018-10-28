@@ -8,7 +8,20 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-  }
+  },
+  textField: {
+      maxWidth: 350,
+      marginTop: 10,
+      marginBottom: 10,
+      margin: 'auto',
+  },
+  formControl: {
+    width: '52vw',
+    maxWidth: 350,
+    marginTop: 15,
+    marginBottom: 10,
+    margin: 'auto',
+}
 }
 
 class OrgInformation extends Component {
@@ -20,7 +33,7 @@ class OrgInformation extends Component {
       <div className={classes.container}>
         <TextField
             label="Team Leader"
-            classes={classes.TextField}
+            className={classes.textField}
             value={formData.summary.leader}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "leader")}
             margin="normal"
@@ -29,7 +42,7 @@ class OrgInformation extends Component {
 
         <TextField
             label="Organization Name"
-            classes={classes.TextField}
+            className={classes.textField}
             value={formData.summary.organization}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "organization")}
             margin="normal"
@@ -38,7 +51,7 @@ class OrgInformation extends Component {
 
         <TextField
             label="Weather"
-            classes={classes.TextField}
+            className={classes.textField}
             value={formData.summary.weather}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "weather")}
             margin="normal"
@@ -48,14 +61,14 @@ class OrgInformation extends Component {
         <TextField
             type="date"
             label="Date"
-            classes={classes.TextField}
+            className={classes.formControl}
             value={formData.summary.date}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "date")}
             InputLabelProps={{ shrink: true }}
             variant="outlined"
         />
 
-        <FormControl variant="outlined" style={{width: '83vw', margin: 'auto', marginTop: 10}}>
+        <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel shrink={true}>
             Time Spent
           </InputLabel>
@@ -79,7 +92,7 @@ class OrgInformation extends Component {
 
         <TextField
             label="Pickup Volunteers"
-            classes={classes.TextField}
+            className={classes.textField}
             value={formData.summary.litterPickupVolunteers}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "litterPickupVolunteers")}
             margin="normal"
@@ -89,7 +102,7 @@ class OrgInformation extends Component {
 
         <TextField
             label="Counting Volunteers"npm
-            classes={classes.TextField}
+            className={classes.textField}
             value={formData.summary.litterCountingVolunteers}
             onChange={(e) => this.props.setValue(e.target.value, "summary", "litterCountingVolunteers")}
             margin="normal"
