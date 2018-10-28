@@ -158,7 +158,7 @@ class NavMenu extends React.Component {
                   }
                 />
                 <Link to={`${ele.id}`} className={classes.checkboxLink} onClick={this.toggleDrawer('left', false)}>
-                  <Typography variant='body2'><b>{`(${(ele.id) + 1})`}</b>{` [${ele.group}] ${ele.type}`}</Typography>
+                  <Typography variant='body2'><b>{`(${(ele.id) + 1})`}</b>{` [${ele.group}] `} <br /> {`${ele.type}`}</Typography>
                 </Link>
               </div>
               <Divider />
