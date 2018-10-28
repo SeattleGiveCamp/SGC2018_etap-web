@@ -71,6 +71,7 @@ const styles = theme => {
     },
     checkboxLink: {
       display: 'flex',
+      textDecoration: 'none',
       alignItems: 'center',
     },
   };

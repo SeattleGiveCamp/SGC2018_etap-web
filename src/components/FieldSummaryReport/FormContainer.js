@@ -37,6 +37,8 @@ const styles = theme => ({
     display: 'auto',
   },
   submitButton: {
+    position: 'fixed',
+    top: '90vh',
     margin: 'auto',
     width: '200px',
   }
