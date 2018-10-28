@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withStyles, Typography, TextField } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
+import getLocation from '../../lib/location';
 
 const styles = {
   container: {
@@ -11,6 +12,17 @@ const styles = {
   }
 }
 class SiteInformation extends Component {
+  constructor(props) {
+    super(props);
+
+    getLocation()
+      .then((position) => {
+        console.warn("setting vals");
+        this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
+        this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
+      });
+  }
+
   render() {
     const { state, classes } = this.props
     const { formData } = state

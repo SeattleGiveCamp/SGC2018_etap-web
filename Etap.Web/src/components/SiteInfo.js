@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {withStyles, Typography, Input, TextField} from '@material-ui/core/'
 import { setValue } from '../ducks/formData';
+import getLocation from '../lib/location';
 
 const styles = {
   container: {
@@ -15,6 +16,7 @@ class SiteInfo extends Component {
     const {state, classes} = this.props
     const { formData } = state
     console.log(state);
+    console.log(getLocation());
     return (
       <div className={classes.container}>
         <Typography variant='h3'>Site Info</Typography>
