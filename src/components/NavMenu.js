@@ -120,7 +120,10 @@ class NavMenu extends React.Component {
             <List className={classes.li}>
               <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
                 <AccountCircle />
-                <Typography className={classes.listText} variant='body1'>Login</Typography>
+                <Typography className={classes.listText} variant='body1'>
+                  { window.localStorage.getItem("userName") ?  
+                    window.localStorage.getItem("userName") : 'Login'}
+                </Typography>
               </ Button>
             </List>
           </Link>

@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { setValue } from "../ducks/formData";
+import Typography from '@material-ui/core/Typography';
+import cookies from 'react-cookies';
 
 const styles = theme => ({
   root: {
@@ -28,15 +30,24 @@ const styles = theme => ({
 
 class Login extends React.Component {
 
+  state = {
+    isLoggedIn: false,
+    userName: undefined
+  };
+
   handleClickShowPassword = () => {
     this.showPassword = !this.showPassword;
   };
 
   submit = () => {
-    console.log("yah");
-    let form = { userName: this.props.state.formData.userInfo.userName, password: this.props.state.formData.userInfo.password };
+    let form = { user: { userName: this.props.state.formData.userInfo.userName, password: this.props.state.formData.userInfo.password }};
     axios.post('https://sgc2018-etap-service.herokuapp.com/login', form)
-      .then(response => { this.setValue(response.data.user.token, "userInfo", "token"); console.log(response.data) })
+      .then(response => { 
+        let userName = response.data.user.userName;
+        cookies.save("token", response.data.user.token);
+        window.localStorage.setItem("userName", userName);
+        this.setState({ isLoggedIn: true });
+      })
       .catch(err => console.log(err));
   }
 
@@ -45,10 +56,8 @@ class Login extends React.Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
-
-
-    return (
-      <div className={classes.root}>
+    const loginForm = (
+     <div className={classes.root}>
         <FormControl >
           <InputLabel htmlFor="user-name">User Name</InputLabel>
           <Input
@@ -81,6 +90,16 @@ class Login extends React.Component {
             <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
           </div>
       </div>
+    );
+    const userCard = (
+        <Typography align="center" variant="headline">
+          User: { window.localStorage.getItem("userName") }
+        </Typography>
+    );
+    return(
+      <div>
+        { this.state.isLoggedIn || cookies.load("token") ? userCard : loginForm }
+      </div>   
     );
   }
 }

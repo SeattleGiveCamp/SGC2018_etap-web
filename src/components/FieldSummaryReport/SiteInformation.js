@@ -18,10 +18,6 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-<<<<<<< Updated upstream
-  }
-}
-=======
   },
   textField: {
       maxWidth: 350,
@@ -38,7 +34,6 @@ const styles = theme => ({
   }
 });
 
->>>>>>> Stashed changes
 class SiteInformation extends Component {
   constructor(props) {
     super(props);
