@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import store from '../lib/store.js';
 
@@ -9,20 +9,24 @@ import Template from './Template.js';
 import FormContainer from './FieldSummaryReport/FormContainer';
 import Lookup from './Lookup.js';
 import SiteInfo from './SiteInfo.js';
+import TrashFormFields from './TrashFormFields.js';
+import { itemListObj } from '../ducks/checklist.js';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <React.Fragment>
+          <Fragment>
             <Route path='/' component={Navbar} />
             <Route exact path='/' component={FormContainer} />
             <Route path='/template' component={Template} />
             <Route path='/FieldSummaryReport' component={FormContainer} />
             <Route path='/lookup' component={Lookup} />
             <Route path='/siteInfo' component={SiteInfo} />
-          </React.Fragment>
+            {itemListObj.map(ele => <Route key={ele.id} path={`/${ele.id}`} component={TrashFormFields} />)}
+
+          </Fragment>
         </BrowserRouter>
       </Provider>
     );
