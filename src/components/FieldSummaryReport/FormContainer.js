@@ -37,6 +37,8 @@ const styles = theme => ({
     display: 'auto',
   },
   submitButton: {
+    backgroundColor: '#60783A',
+    color: '#ffffff',
     margin: 'auto',
     width: '200px',
   }
