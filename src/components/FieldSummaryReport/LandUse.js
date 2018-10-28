@@ -22,7 +22,7 @@ const styles = theme => ({
       maxWidth: 350,
       marginTop: 15,
       marginBottom: 15,
-      margin: 'auto',
+      margin: 'none',
   }
 });
 

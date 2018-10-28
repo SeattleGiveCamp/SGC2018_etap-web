@@ -26,14 +26,13 @@ const styles = theme => ({
       maxWidth: 350,
       marginTop: 10,
       marginBottom: 10,
-      margin: 'auto',
+      margin: 'none',
   },
   formControl: {
-    width: '52vw',
     maxWidth: 350,
     marginTop: 15,
     marginBottom: 10,
-    margin: 'auto',
+    margin: 'none',
   },
   map: {
     width: '100%', 
@@ -67,7 +66,7 @@ class SiteInformation extends Component {
           label={"Lat Boundary " + (i + 1)}
           className={classes.textField}
           value={formData.siteInfo.overallSiteBoundary[i].latitude.toString()}
-          onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i, "latitude")}
+          onChange={(e) => { this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "latitude"); this.updateMapPolygon()}}
           margin="normal"
           variant='outlined'
       />);
@@ -76,7 +75,7 @@ class SiteInformation extends Component {
         label={"Long Boundary " + (i + 1)}
         className={classes.textField}
         value={formData.siteInfo.overallSiteBoundary[i].longitude.toString()}
-        onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i, "longitude")}
+        onChange={(e) => { this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", i.toString(), "longitude"); this.updateMapPolygon()}} 
         margin="normal"
         variant='outlined'
       />);
@@ -97,6 +96,32 @@ class SiteInformation extends Component {
     return fields;
   }
 
+  updateMapPolygon(lat = null, long = null) {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    var latlongarray = [];
+    for(var latlong in formData.siteInfo.overallSiteBoundary) {
+      latlongarray.push([formData.siteInfo.overallSiteBoundary[latlong].latitude, formData.siteInfo.overallSiteBoundary[latlong].longitude]);
+    }
+    if(lat && long) latlongarray.push([lat, long]);
+
+    if(latlongarray.length === 1 && lat && long) {
+      mymap.setView([lat, long], 17);
+    }
+    else if (latlongarray.length === 1) {
+      mymap.setView([latlongarray[0][0], latlongarray[0][1]], 17);
+    }
+
+    var poly = L.polygon(latlongarray);
+    if (currentPoly) {
+      currentPoly.removeFrom(mymap);
+    }
+
+    currentPoly = poly;
+    poly.addTo(mymap).bindPopup("Current cleanup site bounds");
+  }
+
   captureCurrentLocation = () => {
     const { state, classes } = this.props
     const { formData } = state
@@ -106,26 +131,10 @@ class SiteInformation extends Component {
         this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
         this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
 
+        this.updateMapPolygon(position.coords.latitude, position.coords.longitude);
+
         let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
         this.props.setValue({latitude: position.coords.latitude, longitude: position.coords.longitude}, "siteInfo", "overallSiteBoundary", newKey.toString());
-
-        var lat = [];
-        for(var latlong in formData.siteInfo.overallSiteBoundary) {
-          lat.push([formData.siteInfo.overallSiteBoundary[latlong].latitude, formData.siteInfo.overallSiteBoundary[latlong].longitude]);
-        }
-        lat.push([position.coords.latitude, position.coords.longitude]);
-
-        if(lat.length === 1) {
-          mymap.setView([position.coords.latitude, position.coords.longitude], 17);
-        }
-
-        var poly = L.polygon(lat);
-        if (currentPoly) {
-          currentPoly.removeFrom(mymap);
-        }
-
-        currentPoly = poly;
-        poly.addTo(mymap).bindPopup("Current cleanup site bounds");
       }).catch((e) => {
         console.error(e);
         console.warn("no location found, using defaults");
@@ -147,6 +156,8 @@ class SiteInformation extends Component {
       delete this.props.state.formData.siteInfo.overallSiteBoundary[lastKey-1];
       // very jank method to force the page to refresh
       this.props.setValue(this.props.state.formData.siteInfo.userLongitude, "siteInfo", "userLongitude");
+
+      this.updateMapPolygon();
     }
   }
 
