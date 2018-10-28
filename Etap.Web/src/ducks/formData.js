@@ -114,7 +114,12 @@ function initialState() {
     },
     siteInfo: {
       siteName: "",
-      overallSiteBoundary: [],
+      overallSiteBoundary: [
+        {latitude: 0, longitude: 0},
+        {latitude: 0, longitude: 0},
+        {latitude: 0, longitude: 0},
+        {latitude: 0, longitude: 0}
+      ],
       userLatitude: 0,
       userLongitude: 0, 
       boundaryNotes: "",

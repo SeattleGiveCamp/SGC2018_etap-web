@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withStyles, Typography, TextField } from '@material-ui/core/'
-import { setValue } from '../../ducks/formData';
+import { setValue, updateInArray } from '../../ducks/formData';
 import getLocation from '../../lib/location';
 
 const styles = {
@@ -20,6 +20,14 @@ class SiteInformation extends Component {
         console.warn("setting vals");
         this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
         this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
+
+        let latBounds = [
+          {latitude: position.coords.latitude - .0005, longitude: position.coords.longitude - .0005},
+          {latitude: position.coords.latitude + .0005, longitude: position.coords.longitude - .0005},
+          {latitude: position.coords.latitude - .0005, longitude: position.coords.longitude + .0005}
+        ];
+        this.props.updateInArray({latitude: position.coords.latitude + .0005, longitude: position.coords.longitude + .0005}, "siteInfo", "overallSiteBoundary", 0);
+        console.warn(this.props.state.siteInfo.overallSiteBoundary);
       });
   }
 
@@ -47,10 +55,10 @@ class SiteInformation extends Component {
           />
 
           <TextField
-            label="Overall Site Boundaries"
+            label="Site Boundary Latitude 1"
             className={classes.textField}
-            value={formData.siteInfo.overallSiteBoundary}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
+            value={formData.siteInfo.overallSiteBoundary[0].latitude}
+            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary", 0, "latitude")}
             margin="normal"
             variant='outlined'
           />
@@ -72,6 +80,8 @@ class SiteInformation extends Component {
             margin="normal"
             variant='outlined'
           />
+
+          {formData.siteInfo.overallSiteBoundary[0].latitude}
       </div>
     );
   };
