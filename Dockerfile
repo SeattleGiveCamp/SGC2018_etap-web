@@ -14,7 +14,7 @@ RUN npm install
 RUN npm run build
 
 # Copy everything else and build
-WORKDIR /app/Etap.Web
+WORKDIR /app
 RUN dotnet publish -c Release -o ../out
 
 # Build runtime image
