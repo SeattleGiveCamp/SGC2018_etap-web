@@ -1,10 +1,19 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, Typography, TextField, Button } from '@material-ui/core/'
+import { withStyles, Typography, TextField, Button, FormLabel } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 import getLocation from '../../lib/location';
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  formHeading: {
+    margin: theme.spacing.unit * 3
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -12,8 +21,22 @@ const styles = {
   },
   locationButton: {
     border: '1px solid rgba(0, 0, 0, 0.23)'
+  },
+  textField: {
+      maxWidth: 350,
+      marginTop: 10,
+      marginBottom: 10,
+      margin: 'auto',
+  },
+  formControl: {
+    width: '52vw',
+    maxWidth: 350,
+    marginTop: 15,
+    marginBottom: 10,
+    margin: 'auto',
   }
-}
+});
+
 class SiteInformation extends Component {
   createLatLongs = () => {
     const { state, classes } = this.props
@@ -94,6 +117,9 @@ class SiteInformation extends Component {
     const { formData } = state
     return (
       <div className={classes.container}>
+        <FormControl component="fieldset" className={classes.formHeading}>
+          <FormLabel component="legend">Site Information</FormLabel>
+        </FormControl>
           <TextField
             label="Site Name"
             className={classes.textField}

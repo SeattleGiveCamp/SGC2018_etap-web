@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, TextField } from '@material-ui/core/'
+import { withStyles, TextField, FormHelperText, FormControl, FormLabel } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: 'flex'
+  },
+  formHeading: {
+    margin: theme.spacing.unit * 3
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -14,8 +23,15 @@ const styles = {
       marginTop: 10,
       marginBottom: 10,
       margin: 'auto',
+  },  
+  formControl: {
+    width: '52vw',
+    maxWidth: 350,
+    marginTop: 15,
+    marginBottom: 10,
+    margin: 'auto',
   }
-}
+});
 
 class HabitatInformation extends Component {
   render() {
@@ -24,6 +40,10 @@ class HabitatInformation extends Component {
 
     return (
       <div className={classes.container}>
+        <FormControl component="fieldset" className={classes.formHeading}>
+          <FormLabel component="legend">Proximity to the following</FormLabel>
+          <FormHelperText>Estimate distance in feet. If more than 100 feet away from site boundaries, record N/A. (Please take photos of site, including critical proximity features)</FormHelperText>
+        </FormControl>
           <TextField
             label="Waterways"
             className={classes.textField}
