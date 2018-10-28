@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {connect} from 'react-redux';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,10 +13,9 @@ import WeightAssessment from './WeightAssessment';
 import LandUse from './LandUse.js';
 import OrgInformation from './OrgInformation';
 import Button from '@material-ui/core/Button';
-
+import GeneralObservations from './GeneralObservations.js';
 import HabitatInformation from './HabitatInformation';
 import PreventativeMeasures from './PreventativeMeasures';
-
 
 function TabContainer(props) {
   return (
@@ -53,11 +52,11 @@ class ScrollableTabsButtonAuto extends React.Component {
   };
 
   submit = () => {
-    
-    let form = {...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName};
+
+    let form = { ...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName };
     axios.post('https://sgc2018-etap-service.herokuapp.com/api/v1/litter', form)
-    .then(response => console.log(response.data))
-    .catch(err => console.log(err));
+      .then(response => console.log(response.data))
+      .catch(err => console.log(err));
 
   }
 
@@ -84,7 +83,7 @@ class ScrollableTabsButtonAuto extends React.Component {
             <Tab label="Land Use" />
             <Tab label="Habitat Info" />
             <Tab label="Preventative Measures" />
-            <Tab label="Item 7" />
+              <Tab label="General Observations" />
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><OrgInformation/></TabContainer>}
@@ -94,7 +93,7 @@ class ScrollableTabsButtonAuto extends React.Component {
         {value === 4 && <TabContainer><LandUse /></TabContainer>}
         {value === 5 && <TabContainer><HabitatInformation /></TabContainer>}
         {value === 6 && <TabContainer><PreventativeMeasures /></TabContainer>}
-        {value === 7 && <TabContainer>Item 7</TabContainer>}
+          {value === 6 && <TabContainer><GeneralObservations /></TabContainer>}
       </div>
       <div style={{width:'100%', display: 'flex', justifyContent: 'center' }}>
       <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
