@@ -83,7 +83,6 @@ class ScrollableTabsButtonAuto extends React.Component {
     axios.post(`${process.env.API_URL}/api/v1/litter`, form, config)
       .then(response => console.log(response.data))
       .catch(err => console.log(err));
-
   }
 
   render() {
