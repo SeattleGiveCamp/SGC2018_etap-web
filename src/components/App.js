@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import store from '../lib/store.js';
-
 import Dashboard from './Dashboard.js';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from './Navbar.js';
