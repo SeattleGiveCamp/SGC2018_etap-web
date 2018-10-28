@@ -6,14 +6,14 @@ const SETVALUE = "SETVALUE";
 const UPDATEARRAY = "UPDATEARRAY";
 
 //action creators
-export const setValue = (value, key1, key2 = null, key3 = null) => {
+export const setValue = (value, key1, key2 = null, key3 = null, key4 = null) => {
   return {
     type: SETVALUE,
-    payload: buildVariantDynamicObject(value, key1, key2, key3)
+    payload: buildVariantDynamicObject(value, key1, key2, key3, key4)
   };
 };
 
-export const updateInArray = (index, value, key1, key2 = null, key3 = null) => {
+export const updateInArray = (index, value, key1, key2 = null, key3 = null, key4 = null) => {
   return {
     type: UPDATEARRAY,
     payload: {
@@ -21,12 +21,24 @@ export const updateInArray = (index, value, key1, key2 = null, key3 = null) => {
       value: value,
       key1: key1,
       key2: key2,
-      key3: key3
+      key3: key3,
+      key4: key4
     }
   };
 };
 
-function buildVariantDynamicObject(value, key1, key2, key3) {
+function buildVariantDynamicObject(value, key1, key2, key3, key4) {
+  if (key4) {
+    return {
+      [key1]: {
+        [key2]: {
+          [key3]: {
+            [key4]: value
+          }
+        }
+      }
+    };
+  }
   if (key3) {
     return {
       [key1]: {
@@ -91,7 +103,9 @@ function initialState() {
     },
     siteInfo: {
       siteName: "",
-      overallSiteBoundary: [],
+      overallSiteBoundary: {},
+      userLatitude: 0,
+      userLongitude: 0, 
       boundaryNotes: "",
       totalSiteArea: ""
     },
