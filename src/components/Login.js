@@ -24,6 +24,12 @@ const styles = theme => ({
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
+  submitButton: {
+    backgroundColor: '#60783A',
+    color: '#ffffff',
+    margin: 'auto',
+    width: '200px',
+  }
 });
 
 class Login extends React.Component {

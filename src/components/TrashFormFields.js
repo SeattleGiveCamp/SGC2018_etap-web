@@ -13,7 +13,7 @@ const styles = {
         maxWidth: 350,
         marginTop: 10,
         marginBottom: 10,
-        margin: 'auto',
+        margin: 'none',
     },
     weightContainer: {
         display: 'flex',
@@ -21,7 +21,7 @@ const styles = {
         maxWidth: 350,
         marginTop: 10,
         marginBottom: 10,
-        margin: 'auto',
+        margin: 'none',
         justifyContent: 'center',
         alignItems: 'center',
     },

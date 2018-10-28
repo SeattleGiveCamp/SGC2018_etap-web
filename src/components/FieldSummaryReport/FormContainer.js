@@ -68,8 +68,9 @@ class ScrollableTabsButtonAuto extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { state, classes } = this.props
     const { value } = this.state;
+    const { formData } = state
 
     return (
       <Fragment>
@@ -103,7 +104,7 @@ class ScrollableTabsButtonAuto extends React.Component {
           {value === 7 && <TabContainer><GeneralObservations /></TabContainer>}
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+          <Button variant='outlined' color="green" disabled={formData.userInfo.token === "" ? true : false } onClick={this.submit}>Submit</Button>
         </div>
       </Fragment>
     );

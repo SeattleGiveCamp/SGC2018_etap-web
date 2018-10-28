@@ -18,27 +18,21 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-<<<<<<< Updated upstream
-  }
-}
-=======
   },
   textField: {
       maxWidth: 350,
       marginTop: 10,
       marginBottom: 10,
-      margin: 'auto',
+      margin: 'none',
   },
   formControl: {
-    width: '52vw',
     maxWidth: 350,
     marginTop: 15,
     marginBottom: 10,
-    margin: 'auto',
+    margin: 'none',
   }
 });
 
->>>>>>> Stashed changes
 class SiteInformation extends Component {
   constructor(props) {
     super(props);

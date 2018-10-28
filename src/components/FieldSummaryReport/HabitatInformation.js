@@ -22,7 +22,7 @@ const styles = theme => ({
       maxWidth: 350,
       marginTop: 10,
       marginBottom: 10,
-      margin: 'auto',
+      margin: 'none',
   },  
   formControl: {
     width: '52vw',
