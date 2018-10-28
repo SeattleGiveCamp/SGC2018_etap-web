@@ -4,9 +4,9 @@
 ////////////////////////////////////////////////////////
 using System;
 using System.Threading.Tasks;
-using CloudClientLibrary.Models;
+using Etap.Web.CloudClientLibrary;
 
-namespace CloudClientLibrary
+namespace Etap.Web.CloudClientLibrary
 {
     public interface ITableClient
     {

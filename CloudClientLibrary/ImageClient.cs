@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace CloudClientLibrary
+namespace Etap.Web.CloudClientLibrary
 {
     public class ImageClient : IImageClient
     {

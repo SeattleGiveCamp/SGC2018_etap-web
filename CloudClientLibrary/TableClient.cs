@@ -5,12 +5,12 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using CloudClientLibrary.Models;
+using Etap.Web.CloudClientLibrary;
 
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace CloudClientLibrary
+namespace Etap.Web.CloudClientLibrary
 {
     public class TableClient : ITableClient
     {

@@ -5,7 +5,7 @@
 using System;
 using System.Diagnostics;
 
-namespace CloudClientLibrary
+namespace Etap.Web.CloudClientLibrary
 {
     public class CloudClient
     {
