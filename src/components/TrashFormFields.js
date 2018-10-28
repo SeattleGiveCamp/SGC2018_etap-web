@@ -50,7 +50,7 @@ class TrashFormFields extends Component {
         const { formData } = state
         return (
             <div className={classes.container}>
-                <h2 style={{ textAlign: 'center' }}><b>{`(${(this.props.id) + 1})`}</b>{` [${this.props.group}] `} <br /> {`${this.props.type}`}</h2>
+                <h2 style={{ textAlign: 'center' }}><b>{`(${(this.props.id)})`}</b>{` [${this.props.group}] `} <br /> {`${this.props.type}`}</h2>
                 <TextField
                     label="Total"
                     className={classes.textField}
