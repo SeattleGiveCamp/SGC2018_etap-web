@@ -10,7 +10,7 @@ const styles = {
       justifyContent: 'center',
     },
     textField: {
-        maxWidth: 350,
+        minWidth: '100%',
         marginTop: 10,
         marginBottom: 10,
         margin: 'none',
@@ -18,7 +18,7 @@ const styles = {
     weightContainer: {
         display: 'flex',
         flexDirection: 'row',
-        maxWidth: 350,
+        minWidth: '100%',
         marginTop: 10,
         marginBottom: 10,
         margin: 'none',

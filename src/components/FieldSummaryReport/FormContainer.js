@@ -41,14 +41,14 @@ const styles = theme => ({
     backgroundColor: '#60783A',
     color: '#ffffff',
     margin: 'none',
-    width: '200px',
+    minWidth: '100%',
   },
   submitButtonDisabled: {
     backgroundColor: '#60783A',
     opacity: .5,
     color: '#ffffff',
     margin: 'none',
-    width: '200px',
+    minWidth: '100%',
   }
 });
 

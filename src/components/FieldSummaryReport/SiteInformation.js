@@ -23,13 +23,13 @@ const styles = theme => ({
     border: '1px solid rgba(0, 0, 0, 0.23)'
   },
   textField: {
-      maxWidth: 350,
+      minWidth: '100%',
       marginTop: 10,
       marginBottom: 10,
       margin: 'none',
   },
   formControl: {
-    maxWidth: 350,
+    minWidth: '100%',
     marginTop: 15,
     marginBottom: 10,
     margin: 'none',
