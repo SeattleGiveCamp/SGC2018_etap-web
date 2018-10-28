@@ -45,8 +45,11 @@ var currentPoly;
 
 class SiteInformation extends Component {
   componentDidMount() {
+    // Creates a default map with a view somewhere in WA
+    // This will move after the user adds a point to the map
     mymap = L.map('mapid').setView([47.66943521141225,-122.14679157614904], 17);
 
+    // Adds the map to the page after it initalizes
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
       maxZoom: 18,
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
@@ -100,12 +103,19 @@ class SiteInformation extends Component {
     const { state, classes } = this.props
     const { formData } = state
 
+    // Creates an array of type [[lat, long], [lat,long]] from the form object
+    // Have to convert because the form uses an odd model to store data
     var latlongarray = [];
     for(var latlong in formData.siteInfo.overallSiteBoundary) {
       latlongarray.push([formData.siteInfo.overallSiteBoundary[latlong].latitude, formData.siteInfo.overallSiteBoundary[latlong].longitude]);
     }
+    // If the user has passed in a lat, long (only when a new one is created) add it to the array
+    // This avoids waiting for the state to change
     if(lat && long) latlongarray.push([lat, long]);
 
+    // If we only have one point, check where we should center the view for the user
+    // There's two ifs because there are cases where we need to pull from one location or
+    // from the params
     if(latlongarray.length === 1 && lat && long) {
       mymap.setView([lat, long], 17);
     }
@@ -113,11 +123,15 @@ class SiteInformation extends Component {
       mymap.setView([latlongarray[0][0], latlongarray[0][1]], 17);
     }
 
+    // Create a polygon using the lat/long array
     var poly = L.polygon(latlongarray);
+
+    // If we already have a polygon, clear it out so that they don't layer over each other
     if (currentPoly) {
       currentPoly.removeFrom(mymap);
     }
 
+    // Add the polygon to the map!
     currentPoly = poly;
     poly.addTo(mymap).bindPopup("Current cleanup site bounds");
   }
