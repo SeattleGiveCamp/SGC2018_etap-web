@@ -18,6 +18,7 @@ import GeneralObservations from './GeneralObservations.js';
 import HabitatInformation from './HabitatInformation';
 import PreventativeMeasures from './PreventativeMeasures';
 import cookies from 'react-cookies';
+import { setValue } from '../../ducks/formData';
 
 function TabContainer(props) {
   return (
@@ -139,6 +140,6 @@ ScrollableTabsButtonAuto.propTypes = {
 };
 
 const mapStateToProps = state => ({ state });
+const mapDispatchToProps = { setValue };
 
-
-export default connect(mapStateToProps)(withStyles(styles)(ScrollableTabsButtonAuto));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ScrollableTabsButtonAuto));
