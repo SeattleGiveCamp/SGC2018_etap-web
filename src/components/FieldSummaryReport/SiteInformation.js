@@ -42,14 +42,27 @@ class SiteInformation extends Component {
     return fields;
   }
 
+  createDeleteButton = () => {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    let fields = [];
+    if (Object.keys(this.props.state.formData.siteInfo.overallSiteBoundary).length > 0) {
+      fields.push(<Button className={classes.locationButton} onClick={this.removeLocation}>
+        Remove Last Location
+      </Button>)
+    }
+    return fields;
+  }
+
   captureCurrentLocation = () => {
     const { state, classes } = this.props
     const { formData } = state
 
     getLocation()
       .then((position) => {
-        // this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
-        // this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
+        this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
+        this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
 
         let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
         this.props.setValue({latitude: position.coords.latitude, longitude: position.coords.longitude}, "siteInfo", "overallSiteBoundary", newKey.toString());
@@ -61,6 +74,19 @@ class SiteInformation extends Component {
         let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
         this.props.setValue({latitude: 0, longitude: 0}, "siteInfo", "overallSiteBoundary", newKey.toString());
       });
+  }
+
+  removeLocation = () => {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    let lastKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
+
+    if(lastKey > 0) {
+      delete this.props.state.formData.siteInfo.overallSiteBoundary[lastKey-1];
+      // very jank method to force the page to refresh
+      this.props.setValue(this.props.state.formData.siteInfo.userLongitude, "siteInfo", "userLongitude");
+    }
   }
 
   render() {
@@ -109,6 +135,8 @@ class SiteInformation extends Component {
           <Button className={classes.locationButton} onClick={this.captureCurrentLocation}>
             Add Current Location
           </Button>
+
+          {this.createDeleteButton()}
       </div>
     );
   };
