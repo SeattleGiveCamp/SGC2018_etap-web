@@ -126,6 +126,7 @@ function initialState() {
       garbageWeight: 0,
       recycleWeight: 0,
     },
+    landUse: "",
     categories: initialCategories
   };
 }
