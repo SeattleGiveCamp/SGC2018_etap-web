@@ -46,7 +46,7 @@ export const itemListObj = [{ type: "Bags", id: 0, group: 'Paper' },
 { type: "Foamed pieces/fragments of docks, floats", id: 42, group: 'Special Categories/Misc' },
 { type: "Illegal Dumping - Whole Bags of Trash", id: 43, group: 'Special Categories/Misc' },
 { type: "Organic Matter/Items", id: 44, group: 'Special Categories/Misc' },
-{ type: "Write In", id: 45, group: 'write In' }]
+{ type: "Write In", id: 45, group: 'Write In' }]
 
 
 //action creators
