@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {connect} from 'react-redux';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 
 import axios from 'axios';
 
@@ -15,7 +15,7 @@ import WeightAssessment from './WeightAssessment';
 import LandUse from './LandUse.js';
 import OrgInformation from './OrgInformation';
 import Button from '@material-ui/core/Button';
-
+import GeneralObservations from './GeneralObservations.js';
 
 function TabContainer(props) {
   return (
@@ -52,11 +52,11 @@ class ScrollableTabsButtonAuto extends React.Component {
   };
 
   submit = () => {
-    
-    let form = {...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName};
+
+    let form = { ...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName };
     axios.post('https://sgc2018-etap-service.herokuapp.com/api/v1/litter', form)
-    .then(response => console.log(response.data))
-    .catch(err => console.log(err));
+      .then(response => console.log(response.data))
+      .catch(err => console.log(err));
 
   }
 
@@ -66,36 +66,36 @@ class ScrollableTabsButtonAuto extends React.Component {
 
     return (
       <Fragment>
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={value}
-            onChange={this.handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            scrollable
-            scrollButtons="auto"
-          >
-            <Tab label="Org Info" />
-            <Tab label="Site Info" />
-            <Tab label="Item Three" />
-            <Tab label="Weight Assessment" />
-            <Tab label="Land Use" />
-            <Tab label="Item Six" />
-            <Tab label="Item Seven" />
-          </Tabs>
-        </AppBar>
-        {value === 0 && <TabContainer><OrgInformation/></TabContainer>}
-        {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
-        {value === 2 && <TabContainer>Item Three</TabContainer>}
-        {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
-        {value === 4 && <TabContainer><LandUse /></TabContainer>}
-        {value === 5 && <TabContainer>Item Six</TabContainer>}
-        {value === 6 && <TabContainer>Item Seven</TabContainer>}
-      </div>
-      <div style={{width:'100%', display: 'flex', justifyContent: 'center' }}>
-      <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
-      </div>
+        <div className={classes.root}>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              scrollable
+              scrollButtons="auto"
+            >
+              <Tab label="Org Info" />
+              <Tab label="Site Info" />
+              <Tab label="Item Three" />
+              <Tab label="Weight Assessment" />
+              <Tab label="Land Use" />
+              <Tab label="Item Six" />
+              <Tab label="General Observations" />
+            </Tabs>
+          </AppBar>
+          {value === 0 && <TabContainer><OrgInformation /></TabContainer>}
+          {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
+          {value === 2 && <TabContainer>Item Three</TabContainer>}
+          {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
+          {value === 4 && <TabContainer><LandUse /></TabContainer>}
+          {value === 5 && <TabContainer>Item Six</TabContainer>}
+          {value === 6 && <TabContainer><GeneralObservations /></TabContainer>}
+        </div>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+        </div>
       </Fragment>
     );
   }
