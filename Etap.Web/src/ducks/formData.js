@@ -7,6 +7,10 @@ const UPDATEARRAY = "UPDATEARRAY";
 
 //action creators
 export const setValue = (value, key1, key2 = null, key3 = null) => {
+  /*
+    key 1 is the categories key (bags cups etc the slideout menu items )
+    key 2 
+  */
   return {
     type: SETVALUE,
     payload: buildVariantDynamicObject(value, key1, key2, key3)
@@ -27,7 +31,7 @@ export const updateInArray = (index, value, key1, key2 = null, key3 = null) => {
 };
 
 function buildVariantDynamicObject(value, key1, key2, key3) {
-  if (key3){
+  if (key3) {
     return {
       [key1]: {
         [key2]: {
@@ -36,7 +40,7 @@ function buildVariantDynamicObject(value, key1, key2, key3) {
       }
     };
   }
-  if (key2){
+  if (key2) {
     return {
       [key1]: {
         [key2]: value
