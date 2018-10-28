@@ -47,7 +47,7 @@ class Login extends React.Component {
 
   submit = () => {
     let form = { user: { userName: this.props.state.formData.userInfo.userName, password: this.props.state.formData.userInfo.password }};
-    axios.post('https://sgc2018-etap-service.herokuapp.com/login', form)
+    axios.post(`${process.env.API_URL}/login`, form)
       .then(response => { 
         let userName = response.data.user.userName;
         cookies.save("token", response.data.user.token);
