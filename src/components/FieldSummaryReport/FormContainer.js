@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import SiteInformation from './SiteInformation';
 import SiteCondition from './SiteCondition';
@@ -39,7 +40,14 @@ const styles = theme => ({
   submitButton: {
     backgroundColor: '#60783A',
     color: '#ffffff',
-    margin: 'auto',
+    margin: 'none',
+    width: '200px',
+  },
+  submitButtonDisabled: {
+    backgroundColor: '#60783A',
+    opacity: .5,
+    color: '#ffffff',
+    margin: 'none',
     width: '200px',
   }
 });
@@ -59,7 +67,7 @@ class ScrollableTabsButtonAuto extends React.Component {
         "Authorization": "Token " + this.props.state.formData.userInfo.token,
       }
     }
-    
+
     let form = { ...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName };
     axios.post('https://sgc2018-etap-service.herokuapp.com/api/v1/litter', form, config)
       .then(response => console.log(response.data))
@@ -68,8 +76,9 @@ class ScrollableTabsButtonAuto extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { state, classes } = this.props
     const { value } = this.state;
+    const { formData } = state
 
     return (
       <Fragment>
@@ -103,7 +112,11 @@ class ScrollableTabsButtonAuto extends React.Component {
           {value === 7 && <TabContainer><GeneralObservations /></TabContainer>}
         </div>
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+          <Tooltip disableHoverListener title="Please login to submit." >
+            <div>
+              <Button variant='outlined' disabled={formData.userInfo.token === "" ? true : false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>Submit</Button>
+            </div>
+          </Tooltip>
         </div>
       </Fragment>
     );

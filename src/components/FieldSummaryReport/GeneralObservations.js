@@ -23,7 +23,7 @@ const styles = theme => ({
     textArea: {
         marginTop: 10,
         marginBottom: 10,
-        margin: 'auto',
+        margin: 'none',
     }
 });
 
