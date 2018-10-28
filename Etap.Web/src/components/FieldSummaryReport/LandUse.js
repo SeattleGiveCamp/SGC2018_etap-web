@@ -29,7 +29,7 @@ class LandUse extends Component {
             }
           >
             <option value="" />
-            <option value=''>High density residential (>8 dwellings per acre)</option>
+            <option value={10}>High density residential (>8 dwellings per acre)</option>
             <option value={20}>Low density residential (1-8 dwellings per acre)</option>
             <option value={30}>Rural residential (>1-5 acre lots)</option>
             <option value={30}>Retail and wholesale (incl. post offices and hotels)</option>
