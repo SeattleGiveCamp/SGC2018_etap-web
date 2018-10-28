@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Template from '../Template';
 import SiteInformation from './SiteInformation';
 import WeightAssessment from './WeightAssessment';
+import LandUse from './LandUse.js';
 
 
 function TabContainer(props) {
@@ -58,7 +59,7 @@ class ScrollableTabsButtonAuto extends React.Component {
             <Tab label="Site Info" />
             <Tab label="Item Three" />
             <Tab label="Weight Assessment" />
-            <Tab label="Item Five" />
+            <Tab label="Land Use" />
             <Tab label="Item Six" />
             <Tab label="Item Seven" />
           </Tabs>
@@ -67,7 +68,7 @@ class ScrollableTabsButtonAuto extends React.Component {
         {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
         {value === 2 && <TabContainer>Item Three</TabContainer>}
         {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
-        {value === 4 && <TabContainer>Item Five</TabContainer>}
+        {value === 4 && <TabContainer><LandUse /></TabContainer>}
         {value === 5 && <TabContainer>Item Six</TabContainer>}
         {value === 6 && <TabContainer>Item Seven</TabContainer>}
       </div>
