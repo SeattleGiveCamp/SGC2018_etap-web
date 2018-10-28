@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withStyles, TextField, FormControl, FormLabel } from '@material-ui/core/'
+import { withStyles, Typography, TextField, Button, FormLabel, FormControl } from '@material-ui/core/'
 import { setValue } from '../../ducks/formData';
 import getLocation from '../../lib/location';
 
@@ -19,6 +19,9 @@ const styles = theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
   },
+  locationButton: {
+    border: '1px solid rgba(0, 0, 0, 0.23)'
+  },
   textField: {
       maxWidth: 350,
       marginTop: 10,
@@ -34,40 +37,6 @@ const styles = theme => ({
 });
 
 class SiteInformation extends Component {
-  constructor(props) {
-    super(props);
-
-    getLocation()
-      .then((position) => {
-        this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
-        this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
-
-        if(Object.keys(props.state.formData.siteInfo.overallSiteBoundary).length === 0) {
-          let latBounds = {
-            0: {latitude: position.coords.latitude + .0005, longitude: position.coords.longitude + .0005},
-            1: {latitude: position.coords.latitude - .0005, longitude: position.coords.longitude - .0005},
-            2: {latitude: position.coords.latitude + .0005, longitude: position.coords.longitude - .0005},
-            3: {latitude: position.coords.latitude - .0005, longitude: position.coords.longitude + .0005}
-          };
-          this.props.setValue(latBounds, "siteInfo", "overallSiteBoundary");
-        }
-      }).catch(() => {
-        console.warn("no location found, using defaults");
-        this.props.setValue(0, "siteInfo", "userLatitude");
-        this.props.setValue(0, "siteInfo", "userLongitude");
-
-        if(Object.keys(props.state.formData.siteInfo.overallSiteBoundary).length === 0) {
-          let latBounds = {
-            0: {latitude: 0, longitude: 0},
-            1: {latitude: 0, longitude: 0},
-            2: {latitude: 0, longitude: 0},
-            3: {latitude: 0, longitude: 0}
-          };
-          this.props.setValue(latBounds, "siteInfo", "overallSiteBoundary");
-        }
-      });
-  }
-
   createLatLongs = () => {
     const { state, classes } = this.props
     const { formData } = state
@@ -93,6 +62,53 @@ class SiteInformation extends Component {
       />);
     }
     return fields;
+  }
+
+  createDeleteButton = () => {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    let fields = [];
+    if (Object.keys(this.props.state.formData.siteInfo.overallSiteBoundary).length > 0) {
+      fields.push(<Button className={classes.locationButton} onClick={this.removeLocation}>
+        Remove Last Location
+      </Button>)
+    }
+    return fields;
+  }
+
+  captureCurrentLocation = () => {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    getLocation()
+      .then((position) => {
+        this.props.setValue(position.coords.latitude, "siteInfo", "userLatitude");
+        this.props.setValue(position.coords.longitude, "siteInfo", "userLongitude");
+
+        let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
+        this.props.setValue({latitude: position.coords.latitude, longitude: position.coords.longitude}, "siteInfo", "overallSiteBoundary", newKey.toString());
+      }).catch(() => {
+        console.warn("no location found, using defaults");
+        this.props.setValue(0, "siteInfo", "userLatitude");
+        this.props.setValue(0, "siteInfo", "userLongitude");
+
+        let newKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
+        this.props.setValue({latitude: 0, longitude: 0}, "siteInfo", "overallSiteBoundary", newKey.toString());
+      });
+  }
+
+  removeLocation = () => {
+    const { state, classes } = this.props
+    const { formData } = state
+
+    let lastKey = Object.keys(formData.siteInfo.overallSiteBoundary).length;
+
+    if(lastKey > 0) {
+      delete this.props.state.formData.siteInfo.overallSiteBoundary[lastKey-1];
+      // very jank method to force the page to refresh
+      this.props.setValue(this.props.state.formData.siteInfo.userLongitude, "siteInfo", "userLongitude");
+    }
   }
 
   render() {
@@ -139,7 +155,15 @@ class SiteInformation extends Component {
             variant='outlined'
           />
 
+          {/* <div id="mapid" style="width: 600px; height: 400px;"></div> */}
+
           {this.createLatLongs()}
+
+          <Button className={classes.locationButton} onClick={this.captureCurrentLocation}>
+            Add Current Location
+          </Button>
+
+          {this.createDeleteButton()}
       </div>
     );
   };
