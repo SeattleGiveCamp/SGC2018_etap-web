@@ -5,57 +5,40 @@ import { setValue } from '../../ducks/formData';
 
 const styles = {}
 
-class SiteInformation extends Component {
+class SiteCondition extends Component {
   render() {
     const { state, classes } = this.props
     const { formData } = state
     return (
-      <Fragment>
-          <TextField
-            label="Site Name"
-            className={classes.textField}
-            value={formData.siteInfo.siteName}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteName")}
-            margin="normal"
-            variant='outlined'
+      <FormGroup>
+          <FormControlLabel
+            label="Not Littered"
+            control={
+                <Checkbox checked={Not Littered} onChange={this.handleChange('Not Littered')} value="Not Littered" />
+              }
           />
 
-          <TextField
-            label="Site Location"
-            className={classes.textField}
-            value={formData.siteInfo.siteLocation}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteLocation")}
-            margin="normal"
-            variant='outlined'
+          <FormControlLabel
+            label="Slightly Littered"
+            control={
+                <Checkbox checked={Slightly Littered} onChange={this.handleChange('Slightly Littered')} value="Slightly Littered" />
+              }
           />
 
-          <TextField
-            label="Overall Site Boundaries"
-            className={classes.textField}
-            value={formData.siteInfo.overallSiteBoundary}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "overallSiteBoundary")}
-            margin="normal"
-            variant='outlined'
+          <FormControlLabel
+            label="Littered Predominantly"
+            control={
+                <Checkbox checked={Littered Predominantly} onChange={this.handleChange('Littered Predominantly')} value="Littered Predominantly" />
+              }
           />
 
-          <TextField
-            label="Notes"
-            className={classes.textField}
-            value={formData.siteInfo.boundaryNotes}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "boundaryNotes")}
-            margin="normal"
-            variant='outlined'
+          <FormControlLabel
+            label="Heavily Littered"
+            control={
+                <Checkbox checked={Heavily Littered} onChange={this.handleChange('Heavily Littered')} value="Heavily Littered" />
+              }
           />
-
-          <TextField
-            label="Total Sq. Ft."
-            className={classes.textField}
-            value={formData.siteInfo.totalSiteArea}
-            onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "totalSiteArea")}
-            margin="normal"
-            variant='outlined'
-          />
-      </Fragment>
+      </FormGroup>
     );
   };
 };
@@ -64,4 +47,4 @@ const mapStateToProps = state => ({ state });
 const mapDispatchToProps = {setValue};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SiteInformation));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(SiteCondition));
