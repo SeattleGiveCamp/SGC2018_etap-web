@@ -117,7 +117,15 @@ function initialState() {
     siteConditions: {
       trash: ""
     },
+<<<<<<< HEAD
     weightAssessment: {},
+=======
+    weightAssessment: {
+      totalWeight: 0,
+      garbageWeight: 0,
+      recycleWeight: 0,
+    },
+>>>>>>> c6231927e428249400e31704535002b075afda6d
     categories: initialCategories
   };
 }
