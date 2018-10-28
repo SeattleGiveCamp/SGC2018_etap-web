@@ -113,7 +113,7 @@ class NavMenu extends React.Component {
 
     const sideList = (
       <div className={classes.list}>
-        <Typography className={classes.menu} variant='h6'>Menu</Typography>
+        <Typography className={classes.menu} variant='h4'>Menu</Typography>
 
         <Typography>
           <Link to='/FieldSummaryReport' className={classes.link}>

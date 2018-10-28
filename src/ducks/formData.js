@@ -103,7 +103,34 @@ function initialState() {
       garbageWeight: 0,
       recycleWeight: 0,
     },
-    landUse: "",
+    landUse: {
+      highDensity: false,
+      lowDensity: false,
+      ruralResidential: false,
+      retail: false,
+      commercial: false,
+      lightIndustrial: false,
+      heavyIndustrial: false,
+      urbanPark: false,
+      schools: false,
+      recreational: false,
+      cemetery: false,
+      park: false,
+    },
+    habitatInformation: {
+      waterways: 0,
+      stormDrains: 0,
+      criticalHabitat: 0,
+    },
+    preventativeMeasures: {
+      captureDevices: 0,
+      wasteReceptacles: 0,
+      signage: 0,
+      sharpReceptacles: 0,
+      cigaretteReceptacles: 0,
+      other: 0,
+    },
+    generalObservation: "",
     categories: initialCategories
   };
 }
