@@ -9,7 +9,7 @@ const production = process.env.NODE_ENV === 'production';
 
 const webpackConfig = module.exports = {};
 
-webpackConfig.entry = ['babel-polyfill', `${__dirname}/Etap.Web/src/main.js`];
+webpackConfig.entry = ['babel-polyfill', `${__dirname}/src/main.js`];
 
 webpackConfig.output = {
   filename: '[name].[hash].js',
@@ -20,7 +20,7 @@ webpackConfig.output = {
 webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     title:'React App',
-    template: `${__dirname}/Etap.Web/wwwroot/dist/template.html`,
+    template: `${__dirname}/src/template.html`,
   }),
   new DefinePlugin({
     'process.env': {
