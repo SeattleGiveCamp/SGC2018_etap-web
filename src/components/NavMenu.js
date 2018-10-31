@@ -74,6 +74,10 @@ const styles = theme => {
       textDecoration: 'none',
       alignItems: 'center',
     },
+    topNav: {
+      marginTop: 20,
+      marginBottom: 40,
+    }
   };
 };
 
@@ -115,9 +119,8 @@ class NavMenu extends React.Component {
     const sideList = (
       <div className={classes.list}>
         <Typography className={classes.menu} variant='h4'>Menu</Typography>
-        <Typography>
+        <div className={classes.topNav}>
           <Link to='/Login' className={classes.link}>
-            <List className={classes.li}>
               <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
                 <AccountCircle />
                 <Typography className={classes.listText} variant='body1'>
@@ -125,25 +128,20 @@ class NavMenu extends React.Component {
                     window.localStorage.getItem("userName") : 'Login'}
                 </Typography>
               </ Button>
-            </List>
           </Link>
           <Link to='/FieldSummaryReport' className={classes.link}>
-            <List className={classes.li}>
               <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
                 <FileDocumentBoxMultipleOutline />
                 <Typography className={classes.listText} variant='body1'>Site Summary Form</Typography>
               </ Button>
-            </List>
           </Link>
           <Link to='/Lookup' className={classes.link}>
-            <List className={classes.li}>
               <Button className={classes.button} onClick={this.toggleDrawer('left', false)}>
                 <Magnify />
                 <Typography className={classes.listText} variant='body1'>Category Help</Typography>
               </ Button>
-            </List>
           </Link>
-        </Typography>
+        </div>
         <Divider />
 
         {itemListObj.map(ele => {

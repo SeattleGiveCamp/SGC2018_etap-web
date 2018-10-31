@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import cookies from 'react-cookies';
 import NavMenu from './NavMenu';
 
 const styles = theme => {
@@ -26,6 +27,10 @@ const styles = theme => {
       color: '#ffffff',
       fontSize: 24,
     },
+    logoutButton: {
+      color: '#ffffff',
+      float: 'right',
+    },
   };
 };
 
@@ -46,6 +51,12 @@ class Navbar extends Component {
     this.setState({ [item]: false });
   }
 
+  logout = () => {
+    cookies.remove('token');
+    window.localStorage.removeItem('userName');
+    location.reload();
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -54,6 +65,7 @@ class Navbar extends Component {
           <Toolbar>
             <NavMenu />
             <Typography variant="h6" className={classes.grow}>E-ETAP</Typography>
+            <Button onClick={this.logout} className={classes.logoutButton}>Logout</Button>
           </Toolbar>
         </AppBar>
       </div>

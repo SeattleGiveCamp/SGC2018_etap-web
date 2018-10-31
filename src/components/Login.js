@@ -13,10 +13,12 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { setValue } from "../ducks/formData";
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import cookies from 'react-cookies';
 
 const styles = theme => ({
   root: {
+    marginTop: '25vh',
     display: 'flex',
     flexDirection: "column" 
   },
@@ -31,6 +33,19 @@ const styles = theme => ({
     color: '#ffffff',
     margin: 'none',
     minWidth: '100%',
+  },
+  loginText: {
+    textAlign: 'center',
+  },
+  fetchingUser: {
+    color: '#60783A',
+    position: 'fixed  ',
+    marginTop: 4,
+    marginLeft: 0,
+  },
+  errorText: {
+    textAlign: 'center',
+    color: 'red',
   }
 });
 
@@ -38,32 +53,41 @@ class Login extends React.Component {
 
   state = {
     isLoggedIn: false,
-    userName: undefined
+    userName: undefined,
+    showPassword: false,
+    fetchingUser: false,
+    invalidUser: false,
   };
 
   handleClickShowPassword = () => {
-    this.showPassword = !this.showPassword;
+    this.setState({showPassword : !this.state.showPassword});
   };
 
-  submit = () => {
+  submit = async () => {
     let form = { user: { userName: this.props.state.formData.userInfo.userName, password: this.props.state.formData.userInfo.password }};
+
+    await this.setState({fetchingUser: true});
     axios.post(`${process.env.API_URL}/login`, form)
       .then(response => { 
         let userName = response.data.user.userName;
         cookies.save("token", response.data.user.token);
         window.localStorage.setItem("userName", userName);
-        this.setState({ isLoggedIn: true });
+        this.setState({ isLoggedIn: true, fetchingUser: false, invalidUser: false });
       })
-      .catch(err => console.log(err));
+      .catch(err =>   {
+        if(JSON.stringify(err).includes('422') || JSON.stringify(err).includes('500')) {
+          this.setState({ invalidUser: true, fetchingUser: false });
+        }
+      });
   }
 
-  showPassword = false;
 
   render() {
     const { state, classes } = this.props
     const { formData } = state
     const loginForm = (
      <div className={classes.root}>
+        <Typography className={classes.loginText}variant='h5'>Login</Typography>
         <FormControl >
           <InputLabel htmlFor="user-name">User Name</InputLabel>
           <Input
@@ -76,7 +100,7 @@ class Login extends React.Component {
           <InputLabel htmlFor="user-password">Password</InputLabel>
           <Input
             id="user-password"
-            type={this.showPassword ? 'text' : 'password'}
+            type={this.state.showPassword ? 'text' : 'password'}
             value={formData.userInfo.password}
             onChange={(e) => this.props.setValue(e.target.value, "userInfo", "password")}
             endAdornment={
@@ -85,15 +109,17 @@ class Login extends React.Component {
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword}
                 >
-                  {this.showPassword ? <Visibility /> : <VisibilityOff />}
+                  {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             }
           />
           </FormControl>
           <br />
+          {this.state.invalidUser && <Typography className={classes.errorText} variant='overline'>Invalid Username/Password</Typography>}
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
             <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+            {this.state.fetchingUser && <CircularProgress size={24} className={classes.fetchingUser} />}
           </div>
       </div>
     );

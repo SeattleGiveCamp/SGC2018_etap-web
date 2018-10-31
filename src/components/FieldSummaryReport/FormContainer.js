@@ -44,6 +44,7 @@ const styles = theme => ({
     backgroundColor: '#60783A',
     color: '#ffffff',
     margin: 'none',
+    marginBottom: '15vh',
     minWidth: '100%',
   },
   submitButtonDisabled: {
@@ -52,6 +53,7 @@ const styles = theme => ({
     opacity: .5,
     color: '#ffffff',
     margin: 'none',
+    marginBottom: '15vh',
     minWidth: '100%',
   }
 });
