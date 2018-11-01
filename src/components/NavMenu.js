@@ -77,7 +77,16 @@ const styles = theme => {
     topNav: {
       marginTop: 20,
       marginBottom: 40,
-    }
+    },
+    Glass: {
+      backgroundColor: '#dddddd',
+    },
+    Plastic: {
+      backgroundColor: '#dddddd',
+    },
+    Write: {
+      backgroundColor: '#dddddd',
+    },  
   };
 };
 
@@ -146,7 +155,7 @@ class NavMenu extends React.Component {
 
         {itemListObj.map(ele => {
           return (
-            <div key={ele.id}>
+            <div key={ele.id} className={classes[ele.group.split(' ')[0]]}>
               <div className={classes.checkboxContainer}>
                 <FormControlLabel
                   className={classes.checkbox}

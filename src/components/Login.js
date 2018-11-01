@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment}  from 'react';
 import { connect } from "react-redux";
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -6,6 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Button from "@material-ui/core/Button"
 import Input from '@material-ui/core/Input';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem'
+
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
@@ -33,12 +36,15 @@ const styles = theme => ({
     color: '#ffffff',
     margin: 'none',
     minWidth: '100%',
+    '&:active': {
+      backgroundColor: '#4d602e',
+    }
   },
   loginText: {
     textAlign: 'center',
   },
   fetchingUser: {
-    color: '#60783A',
+    color: 'orange',
     position: 'fixed  ',
     marginTop: 4,
     marginLeft: 0,
@@ -57,6 +63,7 @@ class Login extends React.Component {
     showPassword: false,
     fetchingUser: false,
     invalidUser: false,
+    data: [],
   };
 
   handleClickShowPassword = () => {
@@ -81,6 +88,23 @@ class Login extends React.Component {
       });
   }
 
+  componentDidUpdate() {
+    if(cookies.load('token')) {
+      axios.get(`${process.env.API_URL}/api/v1/litter`)
+        .then(response => this.setState({data: response.data}))
+    }
+  }
+
+  componentDidMount() {
+    if(cookies.load('token')) {
+      axios.get(`${process.env.API_URL}/api/v1/litter`)
+      .then(response => this.setState({data: response.data}, () => console.log(response.data)))
+    }
+  }
+
+  showInfo = (e) => {
+    console.log(e.target.id)
+  }
 
   render() {
     const { state, classes } = this.props
@@ -118,15 +142,64 @@ class Login extends React.Component {
           <br />
           {this.state.invalidUser && <Typography className={classes.errorText} variant='overline'>Invalid Username/Password</Typography>}
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <Button variant='outlined' className={classes.submitButton} onClick={this.submit}>Submit</Button>
+            <Button variant='outlined' disabled={this.state.fetchingUser ? true : false} className={classes.submitButton} onClick={this.submit}>Submit</Button>
             {this.state.fetchingUser && <CircularProgress size={24} className={classes.fetchingUser} />}
           </div>
       </div>
     );
     const userCard = (
+      <Fragment>
         <Typography align="center" variant="headline">
           User: { window.localStorage.getItem("userName") }
         </Typography>
+        <div>
+          <List>
+            {this.state.data.map((ele, i) => {
+              const {siteInfo, landUse, habitatInformation, generalObservation, summary, weightAssessment, categories, siteConditions} = ele
+            return (
+            <ListItem key={i} style={{display: 'inline-block'}}>
+              <Typography id={ele.siteName} variant='headline' onClick={this.showInfo}>{ele.siteName}</Typography>
+              <br />
+              <ul>
+                <li>
+                  site info:
+                    <ul>
+                      <li>Site Name: {siteInfo.siteName}</li>
+                      <li>Site Location: {siteInfo.siteLocation}</li>
+                      <li>Total Site Area: {siteInfo.totalSiteArea}</li>
+                      <li>Boundary Notes: {siteInfo.boundaryNotes}</li>
+                      {/* <li>Overall Site Boundaries: {siteInfo.overallSiteBoundary}</li> */}
+                    </ul>
+                </li>
+                <li>
+                  org info:
+                  <ul>
+                    <li>Organization: {summary.organization}</li>
+                    <li>Leader: {summary.leader}</li>
+                    <li>Date: {summary.date}</li>
+                    <li>Hours Spent: {summary.hoursSpent}</li>
+                    <li>Weather: {summary.weather}</li>
+                    <li>Litter Counting Volunteers: {summary.litterCountingVolunteers}</li>
+                    <li>Litter Pickup Volunteers: {summary.litterPickupVolunteers}</li>
+                  </ul>
+                </li>
+                <li>
+                  {/* Site Conditions: {siteConditions.trash} */}
+                </li>
+                <li>
+                  Weight Assessment:
+                  <ul>
+                  <li>Total Litter Weight: {weightAssessment.totalWeight} lbs</li>
+                  <li>Total Garbage Weight: {weightAssessment.garbageWeight} lbs</li>
+                  <li>Total Recycle Weight: {weightAssessment.recycleWeight} lbs</li>
+                  </ul>
+                </li>
+              </ul>
+            </ListItem>
+            )})}
+          </List>
+        </div>
+      </Fragment>
     );
     return(
       <div>

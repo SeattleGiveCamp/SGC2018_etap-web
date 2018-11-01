@@ -65,7 +65,7 @@ class Navbar extends Component {
           <Toolbar>
             <NavMenu />
             <Typography variant="h6" className={classes.grow}>E-ETAP</Typography>
-            <Button onClick={this.logout} className={classes.logoutButton}>Logout</Button>
+            {cookies.load('token') && <Button onClick={this.logout} className={classes.logoutButton}>Logout</Button>}
           </Toolbar>
         </AppBar>
       </div>

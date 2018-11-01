@@ -107,7 +107,7 @@ function initialState() {
     },
     siteInfo: {
       siteName: "",
-      overallSiteBoundary: [],
+      overallSiteBoundary: {},
       boundaryNotes: "",
       totalSiteArea: ""
     },
@@ -118,6 +118,9 @@ function initialState() {
       totalWeight: 0,
       garbageWeight: 0,
       recycleWeight: 0,
+      recycleUnit: '',
+      weightUnit: '',
+      garbageUnit: '',
     },
     landUse: {
       highDensity: false,
