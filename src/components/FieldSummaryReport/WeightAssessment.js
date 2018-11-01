@@ -129,7 +129,7 @@ class WeightAssessment extends Component {
 
         <div className={classes.weightContainer}>
           <TextField
-            label="Total Litter Weight"
+            label="Total Recycle Weight"
             className={classes.weightField}
             value={formData.weightAssessment.recycleWeight}
             onChange={(e) => this.props.setValue(e.target.value, "weightAssessment", "recycleWeight")}
