@@ -184,7 +184,7 @@ class SiteInformation extends Component {
           <FormLabel component="legend">Site Information</FormLabel>
         </FormControl>
           <TextField
-            label="Site Name"
+            label="Site Name (REQUIRED)"
             className={classes.textField}
             value={formData.siteInfo.siteName}
             onChange={(e) => this.props.setValue(e.target.value, "siteInfo", "siteName")}

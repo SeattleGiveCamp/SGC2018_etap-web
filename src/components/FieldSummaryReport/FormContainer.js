@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import SiteInformation from './SiteInformation';
 import SiteCondition from './SiteCondition';
@@ -45,25 +46,46 @@ const styles = theme => ({
     color: '#ffffff',
     margin: 'none',
     minWidth: '100%',
+    '&:active': {
+      backgroundColor: '#4d602e',
+    },
+    '&:hover': {
+      backgroundColor: '#4d602e',
+    },
   },
   submitButtonDisabled: {
     width: '95%',
-    backgroundColor: '#60783A',
+    backgroundColor: '#40583A',
     opacity: .5,
     color: '#ffffff',
     margin: 'none',
     minWidth: '100%',
-  }
+    '&:active': {
+      backgroundColor: '#4d602e',
+    },
+    '&:hover': {
+      backgroundColor: '#4d602e',
+    },
+  },
+  submitProgress: {
+    color: 'orange',
+    position: 'absolute',
+    marginTop: 4,
+    marginLeft: 0,
+  },
 });
 
 class ScrollableTabsButtonAuto extends React.Component {
   state = {
-    value: 0
+    value: 0,
+    submitProgress: false,
+    submitted: false,
+    submitFail: false,
   };
 
   componentDidMount() {
     const cookie = cookies.load("token");
-    if(cookie !== undefined && cookie !== null && cookie.length > 0) {
+    if (cookie !== undefined && cookie !== null && cookie.length > 0) {
       this.props.setValue(cookie, 'userInfo', 'token');
     }
   }
@@ -72,17 +94,29 @@ class ScrollableTabsButtonAuto extends React.Component {
     this.setState({ value });
   };
 
-  submit = () => {
+  submit = async () => {
     let config = {
       headers: {
         "Authorization": "Token " + this.props.state.formData.userInfo.token,
       }
     }
+    // let categories = {}
 
+    // for(let category of this.props.state.formData.categories) {
+    //   if()
+    // }
     let form = { ...this.props.state.formData, siteName: this.props.state.formData.siteInfo.siteName };
+
+    await this.setState({ submitProgress: true, submitted: false, submitFail: false})
+
     axios.post(`${process.env.API_URL}/api/v1/litter`, form, config)
-      .then(response => console.log(response.data))
-      .catch(err => console.log(err));
+      .then(response => {
+        this.setState({ submitProgress: false, submitted: true })
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState({submitFail: true, submitProgress: false})
+      });
   }
 
   render() {
@@ -102,8 +136,8 @@ class ScrollableTabsButtonAuto extends React.Component {
               scrollable
               scrollButtons="auto"
             >
-              <Tab label="Org Info" />
               <Tab label="Site Info" />
+              <Tab label="Org Info" />
               <Tab label="Site Condition" />
               <Tab label="Weight Assessment" />
               <Tab label="Land Use" />
@@ -112,8 +146,8 @@ class ScrollableTabsButtonAuto extends React.Component {
               <Tab label="General Observations" />
             </Tabs>
           </AppBar>
-          {value === 0 && <TabContainer><OrgInformation /></TabContainer>}
-          {value === 1 && <TabContainer><SiteInformation /></TabContainer>}
+          {value === 0 && <TabContainer><SiteInformation /></TabContainer>}
+          {value === 1 && <TabContainer><OrgInformation /></TabContainer>}
           {value === 2 && <TabContainer><SiteCondition /></TabContainer>}
           {value === 3 && <TabContainer><WeightAssessment /></TabContainer>}
           {value === 4 && <TabContainer><LandUse /></TabContainer>}
@@ -124,9 +158,10 @@ class ScrollableTabsButtonAuto extends React.Component {
         <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           {formData.userInfo.token === "" ? 'Please login to submit' : ''}
         </div>
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <br />
-          <Button variant='outlined' disabled={formData.userInfo.token === "" ? true : false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>Submit</Button>
+        {this.state.submitFail && <Typography style={{color: 'red', textAlign: 'center'}}>Error submitting data</Typography>}
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center',  marginBottom: '15vh' }}>
+          <Button variant='outlined' disabled={formData.userInfo.token === "" || this.state.submitProgress ? true : false} className={formData.userInfo.token === "" ? classes.submitButtonDisabled : classes.submitButton} onClick={this.submit}>{this.state.submitted ? 'Submit Complete!' : 'Sumbit'}</Button>
+          {this.state.submitProgress && <CircularProgress size={24} className={classes.submitProgress} />}
         </div>
       </Fragment>
     );
